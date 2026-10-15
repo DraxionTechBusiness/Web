@@ -1,1 +1,142 @@
 
+/* Configuración general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", Arial, sans-serif;
+  color: #f4f5fa;
+
+  /* Fondo fijo de Draxion Tech */
+  background-color: #08090d;
+  background-image: url("multimedia/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Contenido principal */
+.pagina-informacion {
+  width: min(1100px, 90%);
+  margin: 0 auto;
+  padding: 90px 0 70px;
+}
+
+/* Título principal */
+.titulo-principal {
+  margin-bottom: 45px;
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
+/* Cuadrícula de tarjetas */
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Tarjetas */
+.tarjeta {
+  padding: 30px;
+  border-radius: 16px;
+
+  /* Un poco más claro que el fondo de la página */
+  background: rgba(20, 23, 33, 0.94);
+
+  border: 1px solid rgba(130, 145, 180, 0.16);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+/* Títulos azules */
+.tarjeta h2 {
+  margin-bottom: 15px;
+  color: #5794ff;
+  font-size: 1.35rem;
+  font-weight: 750;
+}
+
+/* Texto de las tarjetas */
+.tarjeta p {
+  color: #c8cbd6;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Efecto al pasar el cursor */
+.tarjeta:hover {
+  transform: translateY(-5px);
+  background: rgba(25, 29, 42, 0.97);
+  border-color: rgba(87, 148, 255, 0.5);
+}
+
+/* Sección final, sin tarjeta */
+.cierre {
+  padding: 105px 15px 20px;
+  text-align: center;
+}
+
+.cierre h2 {
+  margin-bottom: 18px;
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.cierre p {
+  color: #c8cbd6;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.7;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 700px) {
+  .pagina-informacion {
+    width: min(92%, 500px);
+    padding-top: 60px;
+  }
+
+  .titulo-principal {
+    margin-bottom: 30px;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .tarjeta {
+    padding: 25px;
+  }
+
+  .cierre {
+    padding-top: 75px;
+  }
+}
+
+/* En algunos navegadores móviles el fondo fijo
+   se comporta de forma diferente. */
+@media (max-width: 700px) {
+  body {
+    background-attachment: scroll;
+  }
+}
