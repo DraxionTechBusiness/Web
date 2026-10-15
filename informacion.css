@@ -186,3 +186,19 @@ body {
     }
 }
 
+/* Centrar el título y la frase del cierre */
+
+.cierre {
+    width: 100%;
+    margin-top: 75px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.cierre h2 {
+    text-align: center;
+}
+
+.cierre p {
+    text-align: center;
+}
