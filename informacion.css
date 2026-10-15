@@ -1,25 +1,110 @@
 
+/* ==============================
+   CONFIGURACIÓN GENERAL
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    background-color: #08090d;
+    background-image: url("./multimedia/fondo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* ==============================
+   CONTENEDOR PRINCIPAL
+============================== */
+
+.pagina-informacion {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 75px 0 45px;
+}
+
+/* ==============================
+   ENCABEZADO
+============================== */
+
+.porque {
+    width: 100%;
+}
+
 .subtitulo-seccion {
     text-align: center;
     font-size: 0.95rem;
     font-weight: 700;
     color: #5794ff;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
 }
 
 .titulo-principal {
     text-align: center;
     font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 800;
+    line-height: 1.2;
     color: #ffffff;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .descripcion-principal {
-    text-align: center;
     max-width: 750px;
-    margin: 0 auto 45px;
+    margin: 0 auto 50px;
+    text-align: center;
     color: #c5c9d4;
     font-size: 1.1rem;
     line-height: 1.8;
 }
+
+/* ==============================
+   TARJETAS DE SERVICIOS
+============================== */
+
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+.tarjeta {
+    padding: 30px;
+    background: rgba(20, 23, 33, 0.94);
+    border: 1px solid rgba(120, 145, 190, 0.18);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.tarjeta h2 {
+    color: #5794ff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.tarjeta p {
+    color: #d0d3dc;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* E
