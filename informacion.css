@@ -202,3 +202,253 @@ body {
 .cierre p {
     text-align: center;
 }
+
+```css
+/* ==============================
+   MEJORAS PARA CELULARES Y TABLETS
+============================== */
+
+.pagina-informacion {
+    width: min(92%, 1100px);
+}
+
+/* Textos principales */
+
+.subtitulo-seccion {
+    line-height: 1.5;
+}
+
+.titulo-principal {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-wrap: balance;
+}
+
+.descripcion-principal {
+    width: 100%;
+    text-wrap: pretty;
+}
+
+/* Tarjetas */
+
+.tarjetas {
+    align-items: stretch;
+}
+
+.tarjeta {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.tarjeta h2 {
+    line-height: 1.35;
+}
+
+.tarjeta p {
+    text-wrap: pretty;
+}
+
+/* Cierre */
+
+.cierre {
+    width: 100%;
+    text-align: center;
+}
+
+.cierre h2,
+.cierre p {
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* Redes sociales */
+
+.redes-sociales {
+    width: 100%;
+    min-width: 0;
+}
+
+.lista-redes {
+    width: 100%;
+}
+
+.lista-redes p {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.lista-redes a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* ==============================
+   TABLETS
+============================== */
+
+@media (max-width: 768px) {
+    .pagina-informacion {
+        width: 92%;
+        padding-top: 48px;
+    }
+
+    .tarjetas {
+        gap: 18px;
+    }
+
+    .tarjeta {
+        padding: 23px;
+    }
+
+    .descripcion-principal {
+        margin-bottom: 35px;
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .cierre {
+        margin-top: 48px;
+    }
+
+    .redes-sociales {
+        margin-top: 28px;
+    }
+}
+
+/* ==============================
+   CELULARES
+============================== */
+
+@media (max-width: 600px) {
+    .pagina-informacion {
+        width: 90%;
+        padding-top: 35px;
+        padding-bottom: 30px;
+    }
+
+    .subtitulo-seccion {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+
+    .titulo-principal {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        line-height: 1.2;
+        margin-bottom: 16px;
+    }
+
+    .descripcion-principal {
+        font-size: 0.98rem;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    .tarjetas {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+    }
+
+    .tarjeta {
+        padding: 23px 21px;
+        border-radius: 14px;
+    }
+
+    .tarjeta h2 {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+    }
+
+    .tarjeta p {
+        font-size: 0.96rem;
+        line-height: 1.75;
+    }
+
+    .cierre {
+        margin-top: 42px;
+        padding: 12px 0;
+    }
+
+    .cierre h2 {
+        font-size: clamp(1.65rem, 7vw, 2rem);
+        line-height: 1.25;
+        margin-bottom: 12px;
+    }
+
+    .cierre p {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .redes-sociales {
+        margin-top: 25px;
+        padding: 25px 17px;
+        border-radius: 14px;
+    }
+
+    .redes-sociales h2 {
+        font-size: 1.45rem;
+        margin-bottom: 22px;
+    }
+
+    .lista-redes {
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .lista-redes p {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 5px;
+        text-align: left;
+        font-size: 0.94rem;
+        line-height: 1.7;
+    }
+
+    .icono-red {
+        flex-shrink: 0;
+        width: 25px;
+        height: 25px;
+        margin-right: 3px;
+    }
+
+    .lista-redes a {
+        min-width: 0;
+    }
+}
+
+/* ==============================
+   CELULARES PEQUEÑOS
+============================== */
+
+@media (max-width: 360px) {
+    .pagina-informacion {
+        width: 92%;
+    }
+
+    .titulo-principal {
+        font-size: 1.75rem;
+    }
+
+    .tarjeta {
+        padding: 19px;
+    }
+
+    .redes-sociales {
+        padding: 22px 13px;
+    }
+
+    .lista-redes p {
+        font-size: 0.88rem;
+    }
+}
+
+/* Evitar animaciones innecesarias */
+
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta,
+    .lista-redes a {
+        transition: none;
+    }
+}
