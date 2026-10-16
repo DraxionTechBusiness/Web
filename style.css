@@ -1,3 +1,6 @@
+/* ==============================
+   CONFIGURACIÓN GENERAL
+============================== */
 
 * {
     margin: 0;
@@ -21,7 +24,10 @@ body {
     background-attachment: fixed;
 }
 
-/* Introducción */
+/* ==============================
+   INTRODUCCIÓN
+============================== */
+
 main {
     min-height: 100vh;
     display: flex;
@@ -37,11 +43,11 @@ main {
 }
 
 .introduccion h1 {
+    margin-bottom: 24px;
     font-size: clamp(2.5rem, 7vw, 5.5rem);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -2px;
-    margin-bottom: 24px;
 }
 
 .introduccion p {
@@ -51,7 +57,10 @@ main {
     line-height: 1.7;
 }
 
-/* Botones */
+/* ==============================
+   BOTONES
+============================== */
+
 .botones {
     display: flex;
     justify-content: center;
@@ -70,119 +79,4 @@ main {
     color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
-    font-weight: 700;
-    transition: background-color 0.2s ease,
-                transform 0.2s ease;
-}
-
-.boton:hover {
-    transform: translateY(-2px);
-}
-
-.boton-azul {
-    background-color: #1677ff;
-}
-
-.boton-azul:hover {
-    background-color: #0864e8;
-}
-
-.boton-negro {
-    background-color: #08090d;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.boton-negro:hover {
-    background-color: #202127;
-}
-
-/* Móviles */
-@media (max-width: 600px) {
-    .introduccion h1 {
-        letter-spacing: -1px;
-    }
-
-    .botones {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .boton {
-        width: 100%;
-        max-width: 340px;
-    }
-}
-
-/* ==============================
-   BARRA DE NAVEGACIÓN
-============================== */
-
-nav {
-    position: relative;
-    z-index: 1000;
-    width: 100%;
-    padding: 18px 5%;
-    background: rgba(8, 9, 13, 0.95);
-    border-bottom: 1px solid rgba(87, 148, 255, 0.2);
-    backdrop-filter: blur(12px);
-}
-
-nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 35px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li a {
-    display: inline-block;
-    padding: 8px 0;
-    color: #d0d3dc;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.25s ease;
-}
-
-nav ul li a:hover {
-    color: #5794ff;
-}
-
-/* Enlace de la página actual */
-
-nav ul li a.activo {
-    color: #5794ff;
-}
-
-/* Adaptación para celulares */
-
-@media (max-width: 600px) {
-    nav {
-        padding: 14px 4%;
-    }
-
-    nav ul {
-        gap: 10px 22px;
-    }
-
-    nav ul li a {
-        font-size: 0.9rem;
-    }
-}
-
-/* Accesibilidad */
-
-@media (prefers-reduced-motion: reduce) {
-    nav ul li a {
-        transition: none;
-    }
-}
+    font-weight: 700
