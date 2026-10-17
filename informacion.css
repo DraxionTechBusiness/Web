@@ -37,7 +37,6 @@ a {
 
 /* ==============================
    ENCABEZADO Y NAVEGACIÓN
-   MISMO ESTILO QUE SERVICIOS.CSS
 ============================== */
 
 .encabezado {
@@ -300,6 +299,46 @@ a {
 }
 
 /* ==============================
+   ENLACES LEGALES
+============================== */
+
+.enlaces-legales {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    margin: 35px auto 20px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.enlaces-legales a {
+    max-width: 100%;
+    color: #69a5ff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.enlaces-legales a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    transform: translateY(-1px);
+}
+
+.enlaces-legales a:focus-visible {
+    outline: 2px solid #69a5ff;
+    outline-offset: 5px;
+    border-radius: 3px;
+}
+
+/* ==============================
    TABLETS
 ============================== */
 
@@ -343,6 +382,11 @@ a {
     .redes-sociales {
         margin-top: 28px;
         padding: 24px;
+    }
+
+    .enlaces-legales {
+        margin-top: 30px;
+        gap: 12px;
     }
 }
 
@@ -441,6 +485,16 @@ a {
         margin-top: 40px;
         padding: 15px 0;
     }
+
+    .enlaces-legales {
+        margin-top: 25px;
+        padding: 0 5px;
+        gap: 12px;
+    }
+
+    .enlaces-legales a {
+        font-size: 0.9rem;
+    }
 }
 
 /* ==============================
@@ -474,6 +528,10 @@ a {
 
     .redes-sociales {
         padding: 20px 15px;
+    }
+
+    .enlaces-legales a {
+        font-size: 0.86rem;
     }
 }
 
