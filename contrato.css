@@ -1,0 +1,306 @@
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Inter", Arial, sans-serif;
+    color: #f2f4f8;
+    background-color: #08090d;
+    background-image: url("./multimedia/fondo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    line-height: 1.7;
+}
+
+/* =========================
+   BARRA DE NAVEGACIÓN
+========================= */
+
+.encabezado {
+    width: 100%;
+    min-height: 82px;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    background: rgba(8, 9, 13, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 10;
+}
+
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.logo {
+    width: 39px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: #1677ff;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.azul {
+    color: #368bff;
+}
+
+.navegacion {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.navegacion a {
+    color: #c5c9d3;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navegacion a:hover {
+    color: #ffffff;
+}
+
+/* Página actual: Sobre nosotros */
+
+.navegacion a.activo {
+    color: #368bff;
+    font-weight: 700;
+}
+
+/* =========================
+   CONTENEDOR DEL DOCUMENTO
+========================= */
+
+.contenedor {
+    width: 100%;
+    padding: 65px 20px 80px;
+}
+
+.documento {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 55px;
+    background: rgba(13, 15, 22, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+}
+
+/* =========================
+   ENCABEZADO DEL CONTRATO
+========================= */
+
+.etiqueta {
+    margin-bottom: 10px;
+    color: #368bff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.documento h1 {
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+}
+
+.fecha-actualizacion {
+    margin-bottom: 28px;
+    color: #929aaa;
+    font-size: 0.9rem;
+}
+
+.introduccion {
+    color: #e0e5ee;
+    font-size: 1.05rem;
+    line-height: 1.85;
+}
+
+/* =========================
+   TEXTO Y SECCIONES
+========================= */
+
+.documento p {
+    margin-bottom: 17px;
+}
+
+.documento section {
+    margin-top: 38px;
+}
+
+.documento h2 {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    color: #368bff;
+    font-size: 1.35rem;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(54, 139, 255, 0.24);
+}
+
+.documento ul {
+    margin: 10px 0 20px;
+    padding-left: 25px;
+}
+
+.documento li {
+    margin-bottom: 14px;
+    padding-left: 5px;
+    color: #cbd1dc;
+}
+
+.documento li::marker {
+    color: #368bff;
+}
+
+.documento strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.documento section p {
+    color: #cbd1dc;
+}
+
+/* =========================
+   PIE DEL DOCUMENTO
+========================= */
+
+.pie-documento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.pie-documento p {
+    margin-bottom: 5px;
+    color: #929aaa;
+    font-size: 0.92rem;
+}
+
+.enlace-documento {
+    color: #69a5ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.enlace-documento:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* =========================
+   ADAPTACIÓN A TABLETS
+========================= */
+
+@media (max-width: 950px) {
+    .encabezado {
+        padding: 18px 4%;
+        gap: 20px;
+    }
+
+    .navegacion {
+        gap: 18px;
+    }
+
+    .documento {
+        padding: 40px 35px;
+    }
+}
+
+/* =========================
+   ADAPTACIÓN A CELULARES
+========================= */
+
+@media (max-width: 650px) {
+    .encabezado {
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+        padding: 20px 15px;
+    }
+
+    .navegacion {
+        justify-content: center;
+        gap: 12px 20px;
+    }
+
+    .navegacion a {
+        font-size: 0.9rem;
+    }
+
+    .contenedor {
+        padding: 30px 12px 45px;
+    }
+
+    .documento {
+        padding: 30px 22px;
+        border-radius: 13px;
+    }
+
+    .documento h1 {
+        font-size: 2rem;
+    }
+
+    .documento h2 {
+        font-size: 1.2rem;
+    }
+
+    .documento p,
+    .documento li {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .marca {
+        font-size: 1.2rem;
+    }
+
+    .navegacion {
+        gap: 10px 14px;
+    }
+
+    .documento {
+        padding: 25px 17px;
+    }
+}
