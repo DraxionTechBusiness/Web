@@ -1,6 +1,18 @@
+
 /* =========================
-   CONFIGURACIÓN GENERAL
+   DRAXIONTECH — PREMIUM
+   INICIO
 ========================= */
+
+:root {
+    --fondo: #08090d;
+    --azul: #368bff;
+    --azul-brillante: #69a7ff;
+    --texto: #ffffff;
+    --texto-secundario: #b5bfd0;
+    --borde: rgba(110, 165, 255, 0.19);
+    --transicion: 0.3s ease;
+}
 
 * {
     margin: 0;
@@ -13,15 +25,48 @@ html {
 }
 
 body {
+    position: relative;
+    isolation: isolate;
     min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
 
+    display: flex;
+    flex-direction: column;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+
+    background-color: var(--fondo);
     background-image: url("multimedia/fondo.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+/* Iluminación ambiental */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 42%,
+            rgba(24, 91, 190, 0.19),
+            transparent 52%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(4, 8, 18, 0.15),
+            rgba(4, 7, 15, 0.48)
+        );
+}
+
+.azul {
+    color: var(--azul-brillante);
 }
 
 /* =========================
@@ -31,61 +76,76 @@ body {
 .encabezado {
     position: relative;
     z-index: 10;
+
     width: 100%;
-    min-height: 78px;
-    padding: 15px 5%;
+    min-height: 82px;
+    padding: 16px 5%;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
 
-    border-bottom: 1px solid rgba(55, 130, 255, 0.35);
-    background: rgba(5, 10, 22, 0.94);
+    background: rgba(5, 9, 19, 0.82);
+    border-bottom: 1px solid var(--borde);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    animation: aparecer-barra 0.7s ease both;
 }
 
 .marca {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 11px;
     flex-shrink: 0;
 
-    color: #ffffff;
-    font-size: 1.55rem;
+    color: var(--texto);
+    font-size: 1.48rem;
     font-weight: 800;
-    letter-spacing: -0.7px;
+    letter-spacing: -0.8px;
     text-decoration: none;
 }
 
 .logo {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-
-    width: 39px;
-    height: 39px;
 
     color: #ffffff;
     font-size: 1.8rem;
     font-weight: 900;
     font-style: italic;
 
-    border-radius: 10px;
-    background: linear-gradient(135deg, #73a5ff, #1764e8);
-    box-shadow: 0 0 20px rgba(37, 119, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #78b2ff, #1764e8);
+    box-shadow: 0 0 25px rgba(37, 119, 255, 0.25);
+
+    transition:
+        transform var(--transicion),
+        box-shadow var(--transicion);
 }
 
-.azul {
-    color: #368bff;
+.marca:hover .logo {
+    transform: rotate(-5deg) scale(1.06);
+    box-shadow: 0 0 32px rgba(37, 119, 255, 0.42);
 }
+
+/* Navegación */
 
 .navegacion {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 26px;
 }
 
 .navegacion a {
@@ -93,30 +153,45 @@ body {
     display: inline-block;
     padding: 10px 0;
 
-    color: #d5dceb;
-    font-size: 0.95rem;
+    color: #c4cddd;
+    font-size: 0.91rem;
     white-space: nowrap;
     text-decoration: none;
 
-    transition: color 0.2s ease;
+    transition: color var(--transicion);
+}
+
+.navegacion a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 3px;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--azul);
+    border-radius: 10px;
+
+    transform: scaleX(0);
+    transform-origin: right;
+
+    transition: transform var(--transicion);
 }
 
 .navegacion a:hover,
 .navegacion a.activo {
-    color: #398fff;
+    color: #ffffff;
 }
 
+.navegacion a:hover::after,
 .navegacion a.activo::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    transform: scaleX(1);
+    transform-origin: left;
+}
 
-    width: 100%;
-    height: 3px;
-
-    border-radius: 5px;
-    background: #328bff;
+.navegacion a.activo {
+    color: var(--azul-brillante);
 }
 
 /* =========================
@@ -124,40 +199,108 @@ body {
 ========================= */
 
 main {
-    min-height: calc(100vh - 78px);
+    flex: 1;
+
+    min-height: calc(100vh - 82px);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 40px 24px;
+    padding: 90px 24px;
 }
 
 .introduccion {
+    position: relative;
+    isolation: isolate;
+
     width: 100%;
-    max-width: 1000px;
+    max-width: 1050px;
+    margin: 0 auto;
+
     text-align: center;
+
+    animation: aparecer-contenido 1s 0.15s ease both;
 }
+
+/* Resplandor detrás del título */
+
+.introduccion::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    width: min(700px, 90%);
+    height: 300px;
+
+    left: 50%;
+    top: 45%;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(25, 101, 235, 0.12);
+    filter: blur(100px);
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    animation: respirar-luz 6s ease-in-out infinite alternate;
+}
+
+/* Título */
 
 .introduccion h1 {
-    margin-bottom: 24px;
+    max-width: 1000px;
+    margin: 0 auto 28px;
 
-    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    color: #ffffff;
+
+    font-size: clamp(3rem, 7.5vw, 6.2rem);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -2px;
+    line-height: 1.04;
+    letter-spacing: -3.5px;
+
+    text-wrap: balance;
+    text-shadow: 0 5px 35px rgba(0, 0, 0, 0.22);
 }
 
-.introduccion p {
-    max-width: 720px;
-    margin: 0 auto 36px;
+/* Línea decorativa */
 
-    font-size: clamp(1rem, 2.2vw, 1.35rem);
-    line-height: 1.7;
+.introduccion h1::after {
+    content: "";
+    display: block;
+
+    width: 76px;
+    height: 4px;
+
+    margin: 28px auto 0;
+
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        #1764e8,
+        #78b2ff
+    );
+
+    box-shadow: 0 0 22px rgba(54, 139, 255, 0.4);
+}
+
+/* Descripción */
+
+.introduccion p {
+    max-width: 700px;
+    margin: 0 auto 40px;
+
+    color: var(--texto-secundario);
+
+    font-size: clamp(1.05rem, 2.1vw, 1.3rem);
+    line-height: 1.9;
+
+    text-wrap: balance;
 }
 
 /* =========================
-   BOTONES DE INICIO
+   BOTONES
 ========================= */
 
 .botones {
@@ -165,75 +308,181 @@ main {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 15px;
 }
 
 .boton {
+    position: relative;
+    overflow: hidden;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    min-height: 52px;
-    padding: 15px 26px;
+    min-height: 54px;
+    padding: 16px 25px;
 
     color: #ffffff;
-    text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.96rem;
     font-weight: 700;
+    text-decoration: none;
 
-    border-radius: 10px;
-    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 12px;
 
     transition:
-        background-color 0.2s ease,
-        transform 0.2s ease;
+        transform var(--transicion),
+        background var(--transicion),
+        border-color var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.boton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        115deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.17) 50%,
+        transparent 80%
+    );
+
+    transform: translateX(-120%);
+    transition: transform 0.65s ease;
+}
+
+.boton:hover::before {
+    transform: translateX(120%);
 }
 
 .boton:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
 }
 
-/* Botón azul: Descubre nuestros servicios */
+.boton:focus-visible,
+.navegacion a:focus-visible,
+.marca:focus-visible {
+    outline: 3px solid var(--azul-brillante);
+    outline-offset: 5px;
+}
+
+/* Botón principal */
 
 .boton-azul {
-    background-color: #1677ff;
-    border: 1px solid #1677ff;
+    background: linear-gradient(135deg, #398fff, #145fe0);
+    border-color: rgba(126, 181, 255, 0.45);
+
+    box-shadow: 0 8px 28px rgba(22, 119, 255, 0.22);
 }
 
 .boton-azul:hover {
-    background-color: #0864e8;
-    border-color: #0864e8;
+    background: linear-gradient(135deg, #5ba2ff, #2475f5);
+    box-shadow: 0 12px 35px rgba(22, 119, 255, 0.36);
 }
 
-/* Botón negro: Conoce DraxionTech */
+/* Botón secundario */
 
 .boton-negro {
-    background-color: #08090d;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(10, 15, 27, 0.62);
+    border-color: rgba(255, 255, 255, 0.19);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .boton-negro:hover {
-    background-color: #202127;
+    background: rgba(32, 54, 86, 0.72);
+    border-color: rgba(105, 167, 255, 0.65);
+
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* Entrada escalonada de los botones */
+
+.botones .boton:nth-child(1) {
+    animation: aparecer-boton 0.7s 0.55s ease both;
+}
+
+.botones .boton:nth-child(2) {
+    animation: aparecer-boton 0.7s 0.7s ease both;
+}
+
+.botones .boton:nth-child(3) {
+    animation: aparecer-boton 0.7s 0.85s ease both;
 }
 
 /* =========================
-   TABLET Y PANTALLAS PEQUEÑAS
+   ANIMACIONES
 ========================= */
 
-@media (max-width: 950px) {
+@keyframes aparecer-barra {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecer-contenido {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecer-boton {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes respirar-luz {
+    from {
+        opacity: 0.55;
+        filter: blur(90px);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(115px);
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
     .encabezado {
         flex-direction: column;
         justify-content: center;
-        gap: 15px;
+        gap: 14px;
         padding: 18px 5%;
     }
 
     .navegacion {
-        gap: 24px;
+        gap: 12px 24px;
     }
 
     main {
-        min-height: calc(100vh - 120px);
+        min-height: calc(100vh - 135px);
     }
 }
 
@@ -247,74 +496,96 @@ main {
     }
 
     .encabezado {
-        padding: 18px 5%;
-        gap: 15px;
+        padding: 17px 5%;
+        gap: 13px;
     }
 
     .marca {
-        justify-content: center;
-        font-size: 1.45rem;
+        font-size: 1.4rem;
     }
 
     .logo {
-        width: 34px;
-        height: 34px;
+        width: 35px;
+        height: 35px;
         font-size: 1.5rem;
     }
 
     .navegacion {
         width: 100%;
-        gap: 12px 20px;
-        justify-content: center;
+        gap: 9px 17px;
     }
 
     .navegacion a {
-        font-size: 0.86rem;
+        font-size: 0.83rem;
+    }
+
+    main {
+        min-height: calc(100vh - 145px);
+        padding: 65px 22px;
     }
 
     .introduccion h1 {
-        letter-spacing: -1px;
+        font-size: clamp(2.65rem, 11vw, 4rem);
+        line-height: 1.1;
+        letter-spacing: -1.8px;
+        margin-bottom: 24px;
+    }
+
+    .introduccion h1::after {
+        width: 60px;
+        margin-top: 23px;
     }
 
     .introduccion p {
-        margin-bottom: 28px;
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 30px;
     }
 
     .botones {
         flex-direction: column;
         width: 100%;
+        gap: 12px;
     }
 
     .boton {
         width: 100%;
-        max-width: 340px;
+        max-width: 350px;
+        min-height: 52px;
+        padding: 15px 18px;
+    }
+
+    .introduccion::before {
+        height: 240px;
+        filter: blur(75px);
     }
 }
 
 /* =========================
-   MÓVILES MUY PEQUEÑOS
+   MÓVILES PEQUEÑOS
 ========================= */
 
 @media (max-width: 360px) {
     .marca {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
 
     .navegacion {
-        gap: 12px 16px;
+        gap: 9px 13px;
     }
 
     .navegacion a {
-        font-size: 0.82rem;
+        font-size: 0.78rem;
     }
 
     .introduccion h1 {
-        font-size: 2.4rem;
+        font-size: 2.45rem;
+        letter-spacing: -1.3px;
     }
 }
 
 /* =========================
-   REDUCIR ANIMACIONES
+   ACCESIBILIDAD
 ========================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -325,7 +596,8 @@ main {
     *,
     *::before,
     *::after {
-        transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
