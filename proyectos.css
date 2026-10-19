@@ -1,1 +1,445 @@
 
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+
+    background-color: #08090d;
+    background-image: url("multimedia/fondo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.azul {
+    color: #368bff;
+}
+
+/* =========================
+   BARRA DE NAVEGACIÓN
+========================= */
+
+.encabezado {
+    position: relative;
+    z-index: 10;
+
+    width: 100%;
+    min-height: 78px;
+    padding: 15px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    border-bottom: 1px solid rgba(55, 130, 255, 0.35);
+    background: rgba(5, 10, 22, 0.94);
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    color: #ffffff;
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    text-decoration: none;
+}
+
+.logo {
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-style: italic;
+
+    border-radius: 10px;
+    background: linear-gradient(135deg, #73a5ff, #1764e8);
+    box-shadow: 0 0 20px rgba(37, 119, 255, 0.25);
+}
+
+.navegacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.navegacion a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 0;
+
+    color: #d5dceb;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.navegacion a:hover {
+    color: #398fff;
+}
+
+/* Página actual */
+
+.navegacion a.activo {
+    color: #398fff;
+}
+
+.navegacion a.activo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    border-radius: 5px;
+    background: #328bff;
+}
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+
+main {
+    flex: 1;
+
+    min-height: calc(100vh - 140px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 65px 24px;
+}
+
+.proyectos {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+/* Etiqueta superior */
+
+.etiqueta {
+    display: inline-block;
+    margin-bottom: 22px;
+
+    color: #60a5fa;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* Título */
+
+.proyectos h1 {
+    margin-bottom: 24px;
+
+    color: #ffffff;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+}
+
+/* Descripción */
+
+.descripcion {
+    max-width: 690px;
+    margin: 0 auto 38px;
+
+    color: #c4ccda;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    line-height: 1.8;
+}
+
+/* =========================
+   TARJETA SIN PROYECTOS
+========================= */
+
+.mensaje-proyectos {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto 32px;
+    padding: 38px 32px;
+
+    background: rgba(5, 10, 22, 0.78);
+    border: 1px solid rgba(55, 130, 255, 0.3);
+    border-radius: 20px;
+
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Icono */
+
+.icono-proyectos {
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #72aaff;
+    font-size: 2rem;
+
+    background: rgba(37, 119, 255, 0.13);
+    border: 1px solid rgba(55, 130, 255, 0.2);
+    border-radius: 17px;
+}
+
+/* Título de la tarjeta */
+
+.mensaje-proyectos h2 {
+    margin-bottom: 15px;
+
+    color: #ffffff;
+    font-size: clamp(1.35rem, 4vw, 1.7rem);
+}
+
+/* Texto de la tarjeta */
+
+.mensaje-proyectos p {
+    max-width: 480px;
+    margin: 0 auto 25px;
+
+    color: #b9c3d4;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Estado */
+
+.estado-proyectos {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    color: #9dbce9;
+    font-size: 0.9rem;
+}
+
+.punto-estado {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: #398fff;
+    box-shadow: 0 0 10px rgba(57, 143, 255, 0.6);
+}
+
+/* =========================
+   BOTÓN VOLVER AL INICIO
+========================= */
+
+.boton-inicio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 52px;
+    padding: 15px 26px;
+
+    color: #ffffff;
+    background: #1677ff;
+    border: 1px solid #1677ff;
+    border-radius: 10px;
+
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.boton-inicio:hover {
+    background: #0864e8;
+    border-color: #0864e8;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   PIE DE PÁGINA
+========================= */
+
+.pie-pagina {
+    width: 100%;
+    padding: 22px 20px;
+
+    text-align: center;
+    background: rgba(5, 10, 22, 0.88);
+    border-top: 1px solid rgba(55, 130, 255, 0.2);
+}
+
+.pie-pagina p {
+    color: #8995a9;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 950px) {
+    .encabezado {
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        padding: 18px 5%;
+    }
+
+    .navegacion {
+        gap: 24px;
+    }
+
+    main {
+        min-height: calc(100vh - 170px);
+    }
+}
+
+/* =========================
+   MÓVILES
+========================= */
+
+@media (max-width: 600px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    .encabezado {
+        padding: 18px 5%;
+        gap: 15px;
+    }
+
+    .marca {
+        justify-content: center;
+        font-size: 1.45rem;
+    }
+
+    .logo {
+        width: 34px;
+        height: 34px;
+        font-size: 1.5rem;
+    }
+
+    .navegacion {
+        width: 100%;
+        gap: 12px 20px;
+        justify-content: center;
+    }
+
+    .navegacion a {
+        font-size: 0.86rem;
+    }
+
+    main {
+        padding: 48px 20px;
+    }
+
+    .proyectos h1 {
+        letter-spacing: -1px;
+    }
+
+    .descripcion {
+        margin-bottom: 30px;
+    }
+
+    .mensaje-proyectos {
+        padding: 30px 22px;
+        border-radius: 16px;
+    }
+
+    .mensaje-proyectos p {
+        font-size: 0.95rem;
+    }
+
+    .boton-inicio {
+        width: 100%;
+        max-width: 340px;
+    }
+}
+
+/* =========================
+   MÓVILES MUY PEQUEÑOS
+========================= */
+
+@media (max-width: 360px) {
+    .marca {
+        font-size: 1.3rem;
+    }
+
+    .navegacion {
+        gap: 12px 16px;
+    }
+
+    .navegacion a {
+        font-size: 0.82rem;
+    }
+
+    .proyectos h1 {
+        font-size: 2.3rem;
+    }
+
+    .mensaje-proyectos {
+        padding: 26px 16px;
+    }
+}
+
+/* =========================
+   REDUCIR ANIMACIONES
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
