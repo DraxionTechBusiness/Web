@@ -534,3 +534,153 @@ main {
         animation-duration: 0.01ms !important;
     }
 }
+
+
+/* ==============================
+   ANIMACIONES PROGRESIVAS
+============================== */
+
+/* La barra aparece desde arriba */
+
+.encabezado {
+    animation: servicios-bajada 0.7s ease both;
+}
+
+/* Presentación: etiqueta, título y descripción */
+
+.presentacion .etiqueta {
+    animation: servicios-subida 0.65s ease 0.12s both;
+}
+
+.presentacion h1 {
+    animation: servicios-subida 0.75s ease 0.25s both;
+}
+
+.presentacion .descripcion {
+    animation: servicios-subida 0.75s ease 0.4s both;
+}
+
+/* Las tarjetas aparecen una por una */
+
+.tarjeta-servicio {
+    opacity: 0;
+    animation: servicios-subida 0.7s ease both;
+    animation-delay: 0.2s;
+}
+
+.tarjeta-servicio:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.tarjeta-servicio:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.tarjeta-servicio:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.tarjeta-servicio:nth-child(4) {
+    animation-delay: 0.65s;
+}
+
+.tarjeta-servicio:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+/* El cierre entra después de las tarjetas */
+
+.cierre {
+    animation: servicios-subida 0.8s ease 0.9s both;
+}
+
+.cierre h2 {
+    animation: servicios-subida 0.6s ease 1s both;
+}
+
+.cierre p {
+    animation: servicios-subida 0.6s ease 1.12s both;
+}
+
+.boton-principal {
+    animation: servicios-subida 0.65s ease 1.25s both;
+}
+
+/* Movimiento suave de los iconos al pasar el cursor */
+
+.tarjeta-servicio .icono {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.tarjeta-servicio:hover .icono {
+    transform: translateY(-3px) scale(1.04);
+    border-color: #75b0ff;
+    box-shadow:
+        0 0 24px rgba(36, 115, 255, 0.28),
+        inset 0 0 15px rgba(36, 115, 255, 0.12);
+}
+
+/* Flecha del botón */
+
+.boton-principal span {
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
+.boton-principal:hover span {
+    transform: translateX(5px);
+}
+
+/* Animaciones de entrada */
+
+@keyframes servicios-bajada {
+    from {
+        opacity: 0;
+        transform: translateY(-14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes servicios-subida {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Evitar movimientos excesivos en dispositivos táctiles */
+
+@media (hover: none) {
+    .tarjeta-servicio:hover {
+        transform: none;
+    }
+}
+
+/* Respetar las preferencias de accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+    .encabezado,
+    .presentacion .etiqueta,
+    .presentacion h1,
+    .presentacion .descripcion,
+    .tarjeta-servicio,
+    .cierre,
+    .cierre h2,
+    .cierre p,
+    .boton-principal {
+        opacity: 1;
+        animation: none;
+    }
+}
