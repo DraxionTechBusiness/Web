@@ -820,3 +820,39 @@ body::before {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* =========================
+   APARICIÓN PROGRESIVA
+========================= */
+
+.animacion-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.75s ease,
+        transform 0.75s ease;
+}
+
+.animacion-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Las tarjetas aparecen una después de otra */
+
+.tarjetas .tarjeta.animacion-scroll {
+    transition-delay: var(--retraso, 0ms);
+}
+
+/* Evitar que las animaciones iniciales
+   interfieran con las de desplazamiento */
+
+@media (prefers-reduced-motion: reduce) {
+    .animacion-scroll,
+    .tarjetas .tarjeta.animacion-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
