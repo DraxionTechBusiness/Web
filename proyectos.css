@@ -65,6 +65,7 @@ body::before {
     color: var(--azul);
 }
 
+
 /* =========================
    BARRA DE NAVEGACIÓN
 ========================= */
@@ -72,21 +73,15 @@ body::before {
 .encabezado {
     position: relative;
     z-index: 10;
-
     width: 100%;
     min-height: 78px;
     padding: 15px 5%;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-
-    background: rgba(7, 10, 19, 0.78);
-    border-bottom: 1px solid rgba(75, 139, 255, 0.2);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
+    border-bottom: 1px solid rgba(55, 130, 255, 0.35);
+    background: rgba(5, 10, 22, 0.96);
     animation: aparecer-barra 0.7s ease both;
 }
 
@@ -95,38 +90,30 @@ body::before {
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
-
-    color: var(--texto);
+    color: #fff;
     font-size: 1.55rem;
     font-weight: 800;
     letter-spacing: -0.7px;
     text-decoration: none;
-
-    transition: opacity 0.25s ease;
-}
-
-.marca:hover {
-    opacity: 0.85;
 }
 
 .logo {
     width: 39px;
     height: 39px;
-    flex-shrink: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    color: #ffffff;
+    color: #fff;
     font-size: 1.8rem;
     font-weight: 900;
     font-style: italic;
-
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
+    border-radius: 10px;
     background: linear-gradient(135deg, #73a5ff, #1764e8);
-    box-shadow: 0 0 24px rgba(37, 119, 255, 0.25);
+    box-shadow: 0 0 20px rgba(37, 119, 255, 0.25);
+}
+
+.azul {
+    color: #368bff;
 }
 
 .navegacion {
@@ -134,48 +121,88 @@ body::before {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 28px;
+    gap: 25px;
 }
 
 .navegacion a {
     position: relative;
-    display: inline-block;
     padding: 10px 0;
-
-    color: #cbd5e5;
-    font-size: 0.94rem;
+    color: #d5dceb;
+    font-size: 0.95rem;
     white-space: nowrap;
     text-decoration: none;
-
-    transition: color 0.25s ease;
-}
-
-.navegacion a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 3px;
-
-    width: 100%;
-    height: 2px;
-
-    background: var(--azul);
-    border-radius: 5px;
-    transform: scaleX(0);
-    transform-origin: right;
-
-    transition: transform 0.25s ease;
+    transition: color 0.2s ease;
 }
 
 .navegacion a:hover,
 .navegacion a.activo {
-    color: var(--azul-claro);
+    color: #398fff;
 }
 
-.navegacion a:hover::after,
 .navegacion a.activo::after {
-    transform: scaleX(1);
-    transform-origin: left;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 5px;
+    background: #328bff;
+}
+
+@media (max-width: 950px) {
+    .encabezado {
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        padding: 18px 5%;
+    }
+
+    .navegacion {
+        gap: 12px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .encabezado {
+        padding: 18px 5%;
+        gap: 15px;
+    }
+
+    .marca {
+        justify-content: center;
+        font-size: 1.45rem;
+    }
+
+    .logo {
+        width: 34px;
+        height: 34px;
+        font-size: 1.5rem;
+    }
+
+    .navegacion {
+        width: 100%;
+        gap: 12px 18px;
+        justify-content: center;
+    }
+
+    .navegacion a {
+        font-size: 0.86rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .marca {
+        font-size: 1.3rem;
+    }
+
+    .navegacion {
+        gap: 12px 14px;
+    }
+
+    .navegacion a {
+        font-size: 0.82rem;
+    }
 }
 
 /* =========================
