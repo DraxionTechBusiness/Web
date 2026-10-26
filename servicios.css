@@ -1,6 +1,9 @@
-/* ==============================
-   CONFIGURACIÓN GENERAL
-============================== */
+
+/* ========================================
+   DRAXIONTECH — SERVICIOS
+   ======================================== */
+
+/* CONFIGURACIÓN GENERAL */
 
 * {
     margin: 0;
@@ -15,8 +18,8 @@ html {
 body {
     min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
-    background-color: #08090d;
+    color: #fff;
+    background-color: #030711;
     background-image:
         radial-gradient(
             ellipse at 50% 20%,
@@ -35,9 +38,13 @@ a {
     text-decoration: none;
 }
 
-/* ==============================
-   ENCABEZADO Y NAVEGACIÓN
-============================== */
+main {
+    width: 100%;
+}
+
+/* ========================================
+   BARRA DE NAVEGACIÓN
+   ======================================== */
 
 .encabezado {
     position: relative;
@@ -50,7 +57,8 @@ a {
     justify-content: space-between;
     gap: 30px;
     border-bottom: 1px solid rgba(55, 130, 255, 0.35);
-    background: rgba(5, 10, 22, 0.94);
+    background: rgba(5, 10, 22, 0.96);
+    animation: servicios-bajada 0.7s ease both;
 }
 
 .marca {
@@ -64,12 +72,12 @@ a {
 }
 
 .logo {
+    width: 39px;
+    height: 39px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 39px;
-    height: 39px;
-    color: #ffffff;
+    color: #fff;
     font-size: 1.8rem;
     font-weight: 900;
     font-style: italic;
@@ -87,7 +95,7 @@ a {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 25px;
 }
 
 .navegacion a {
@@ -115,17 +123,9 @@ a {
     background: #328bff;
 }
 
-/* ==============================
-   CONTENIDO PRINCIPAL
-============================== */
-
-main {
-    width: 100%;
-}
-
-/* ==============================
+/* ========================================
    PRESENTACIÓN
-============================== */
+   ======================================== */
 
 .presentacion {
     max-width: 900px;
@@ -140,6 +140,7 @@ main {
     font-size: 0.95rem;
     font-weight: 800;
     letter-spacing: 2px;
+    animation: servicios-subida 0.65s ease 0.12s both;
 }
 
 .presentacion h1 {
@@ -149,6 +150,7 @@ main {
     line-height: 1.15;
     letter-spacing: -1.5px;
     text-wrap: balance;
+    animation: servicios-subida 0.75s ease 0.25s both;
 }
 
 .presentacion h1 span {
@@ -163,11 +165,12 @@ main {
     color: #c2cce0;
     font-size: 1.08rem;
     line-height: 1.8;
+    animation: servicios-subida 0.75s ease 0.4s both;
 }
 
-/* ==============================
+/* ========================================
    TARJETAS DE SERVICIOS
-============================== */
+   ======================================== */
 
 .servicios {
     width: 90%;
@@ -195,10 +198,32 @@ main {
     border: 1px solid rgba(28, 126, 255, 0.55);
     border-radius: 17px;
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.16);
+    opacity: 0;
+    animation: servicios-subida 0.7s ease both;
     transition:
         transform 0.25s ease,
         border-color 0.25s ease,
         box-shadow 0.25s ease;
+}
+
+.tarjeta-servicio:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.tarjeta-servicio:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.tarjeta-servicio:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.tarjeta-servicio:nth-child(4) {
+    animation-delay: 0.65s;
+}
+
+.tarjeta-servicio:nth-child(5) {
+    animation-delay: 0.8s;
 }
 
 .tarjeta-servicio:hover {
@@ -207,9 +232,7 @@ main {
     box-shadow: 0 14px 38px rgba(16, 92, 220, 0.14);
 }
 
-/* ==============================
-   ICONOS
-============================== */
+/* ICONOS */
 
 .icono {
     width: 96px;
@@ -224,6 +247,10 @@ main {
     box-shadow:
         0 0 18px rgba(36, 115, 255, 0.2),
         inset 0 0 15px rgba(36, 115, 255, 0.08);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .icono svg {
@@ -231,9 +258,15 @@ main {
     height: 45px;
 }
 
-/* ==============================
-   TÍTULOS Y DESCRIPCIONES
-============================== */
+.tarjeta-servicio:hover .icono {
+    transform: translateY(-3px) scale(1.04);
+    border-color: #75b0ff;
+    box-shadow:
+        0 0 24px rgba(36, 115, 255, 0.28),
+        inset 0 0 15px rgba(36, 115, 255, 0.12);
+}
+
+/* TÍTULOS Y DESCRIPCIONES */
 
 .tarjeta-servicio h2 {
     min-height: 58px;
@@ -255,9 +288,7 @@ main {
     line-height: 1.8;
 }
 
-/* ==============================
-   PRECIOS
-============================== */
+/* PRECIOS */
 
 .precio {
     width: 100%;
@@ -279,15 +310,16 @@ main {
     font-weight: 800;
 }
 
-/* ==============================
+/* ========================================
    CIERRE
-============================== */
+   ======================================== */
 
 .cierre {
     padding: 55px 20px 65px;
     text-align: center;
     border-top: 1px solid rgba(46, 123, 255, 0.35);
     background: rgba(5, 13, 28, 0.55);
+    animation: servicios-subida 0.8s ease 0.9s both;
 }
 
 .cierre h2 {
@@ -315,7 +347,7 @@ main {
     gap: 12px;
     margin-top: 27px;
     padding: 14px 24px;
-    color: #ffffff;
+    color: #fff;
     background: linear-gradient(135deg, #328cff, #155bd0);
     border: 1px solid #4395ff;
     border-radius: 10px;
@@ -325,14 +357,21 @@ main {
         box-shadow 0.2s ease;
 }
 
+.boton-principal span {
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
 .boton-principal:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(35, 117, 255, 0.25);
 }
 
-/* ==============================
-   PIE DE PÁGINA
-============================== */
+.boton-principal:hover span {
+    transform: translateX(5px);
+}
+
+/* PIE DE PÁGINA */
 
 .pie {
     padding: 23px 20px;
@@ -347,9 +386,9 @@ main {
     line-height: 1.6;
 }
 
-/* ==============================
-   TABLETS
-============================== */
+/* ========================================
+   TABLETS Y PANTALLAS MEDIANAS
+   ======================================== */
 
 @media (max-width: 950px) {
     .encabezado {
@@ -360,7 +399,7 @@ main {
     }
 
     .navegacion {
-        gap: 24px;
+        gap: 20px;
     }
 
     .servicios {
@@ -377,9 +416,9 @@ main {
     }
 }
 
-/* ==============================
+/* ========================================
    CELULARES
-============================== */
+   ======================================== */
 
 @media (max-width: 600px) {
     body {
@@ -404,7 +443,7 @@ main {
 
     .navegacion {
         width: 100%;
-        gap: 12px 20px;
+        gap: 12px 18px;
         justify-content: center;
     }
 
@@ -492,9 +531,7 @@ main {
     }
 }
 
-/* ==============================
-   CELULARES PEQUEÑOS
-============================== */
+/* CELULARES PEQUEÑOS */
 
 @media (max-width: 360px) {
     .marca {
@@ -502,7 +539,7 @@ main {
     }
 
     .navegacion {
-        gap: 12px 16px;
+        gap: 12px 14px;
     }
 
     .navegacion a {
@@ -518,123 +555,9 @@ main {
     }
 }
 
-/* ==============================
-   ACCESIBILIDAD
-============================== */
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-    }
-}
-
-
-/* ==============================
-   ANIMACIONES PROGRESIVAS
-============================== */
-
-/* La barra aparece desde arriba */
-
-.encabezado {
-    animation: servicios-bajada 0.7s ease both;
-}
-
-/* Presentación: etiqueta, título y descripción */
-
-.presentacion .etiqueta {
-    animation: servicios-subida 0.65s ease 0.12s both;
-}
-
-.presentacion h1 {
-    animation: servicios-subida 0.75s ease 0.25s both;
-}
-
-.presentacion .descripcion {
-    animation: servicios-subida 0.75s ease 0.4s both;
-}
-
-/* Las tarjetas aparecen una por una */
-
-.tarjeta-servicio {
-    opacity: 0;
-    animation: servicios-subida 0.7s ease both;
-    animation-delay: 0.2s;
-}
-
-.tarjeta-servicio:nth-child(1) {
-    animation-delay: 0.2s;
-}
-
-.tarjeta-servicio:nth-child(2) {
-    animation-delay: 0.35s;
-}
-
-.tarjeta-servicio:nth-child(3) {
-    animation-delay: 0.5s;
-}
-
-.tarjeta-servicio:nth-child(4) {
-    animation-delay: 0.65s;
-}
-
-.tarjeta-servicio:nth-child(5) {
-    animation-delay: 0.8s;
-}
-
-/* El cierre entra después de las tarjetas */
-
-.cierre {
-    animation: servicios-subida 0.8s ease 0.9s both;
-}
-
-.cierre h2 {
-    animation: servicios-subida 0.6s ease 1s both;
-}
-
-.cierre p {
-    animation: servicios-subida 0.6s ease 1.12s both;
-}
-
-.boton-principal {
-    animation: servicios-subida 0.65s ease 1.25s both;
-}
-
-/* Movimiento suave de los iconos al pasar el cursor */
-
-.tarjeta-servicio .icono {
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease;
-}
-
-.tarjeta-servicio:hover .icono {
-    transform: translateY(-3px) scale(1.04);
-    border-color: #75b0ff;
-    box-shadow:
-        0 0 24px rgba(36, 115, 255, 0.28),
-        inset 0 0 15px rgba(36, 115, 255, 0.12);
-}
-
-/* Flecha del botón */
-
-.boton-principal span {
-    display: inline-block;
-    transition: transform 0.25s ease;
-}
-
-.boton-principal:hover span {
-    transform: translateX(5px);
-}
-
-/* Animaciones de entrada */
+/* ========================================
+   ANIMACIONES
+   ======================================== */
 
 @keyframes servicios-bajada {
     from {
@@ -660,27 +583,37 @@ main {
     }
 }
 
-/* Evitar movimientos excesivos en dispositivos táctiles */
+/* DISPOSITIVOS TÁCTILES */
 
 @media (hover: none) {
     .tarjeta-servicio:hover {
         transform: none;
     }
+
+    .tarjeta-servicio:hover .icono {
+        transform: none;
+    }
+
+    .boton-principal:hover span {
+        transform: none;
+    }
 }
 
-/* Respetar las preferencias de accesibilidad */
+/* ACCESIBILIDAD */
 
 @media (prefers-reduced-motion: reduce) {
-    .encabezado,
-    .presentacion .etiqueta,
-    .presentacion h1,
-    .presentacion .descripcion,
-    .tarjeta-servicio,
-    .cierre,
-    .cierre h2,
-    .cierre p,
-    .boton-principal {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .tarjeta-servicio {
         opacity: 1;
-        animation: none;
     }
 }
