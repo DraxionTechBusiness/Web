@@ -1,154 +1,244 @@
 
-/* ==========================================
-   DRAXIONTECH - SISTEMA DE TIENDA
-   ========================================== */
+"use strict";
 
+/* =========================================
+   DRAXIONTECH — CATÁLOGO Y CARRITO
+========================================= */
+
+// Servicios disponibles
 const productos = {
     ia: {
         nombre: "Anuncios y trabajos con IA",
-        descripcion: "Contenido creativo y soluciones con inteligencia artificial."
+        descripcion: "Contenido creativo y recursos elaborados con inteligencia artificial."
     },
+
     mantenimiento: {
-        nombre: "Edición y mantenimiento de páginas web",
-        descripcion: "Edición, correcciones y mantenimiento de sitios existentes."
+        nombre: "Edición y mantenimiento web",
+        descripcion: "Actualizaciones, mejoras y mantenimiento de páginas existentes."
     },
+
     web: {
         nombre: "Creación de páginas web",
-        descripcion: "Diseño y desarrollo de páginas web personalizadas."
+        descripcion: "Páginas personalizadas para negocios, proyectos e ideas."
     },
+
     qr: {
         nombre: "Creación de códigos QR",
-        descripcion: "Creación de códigos QR para tus proyectos."
+        descripcion: "Códigos QR para páginas web y otros recursos digitales."
     },
+
     aplicaciones: {
         nombre: "Creación de aplicaciones",
-        descripcion: "Desarrollo de aplicaciones según tus necesidades."
+        descripcion: "Aplicaciones adaptadas a las necesidades de cada proyecto."
     }
 };
 
-// Carrito de servicios seleccionados
+// Estado del carrito
 const carrito = [];
 
-// Elementos de la página
+// Elementos del HTML
+const botonesAnadir = document.querySelectorAll(".boton-anadir");
+const botonVerCarrito = document.getElementById("ver-carrito");
+const seccionCarrito = document.getElementById("carrito");
 const contenidoCarrito = document.getElementById("contenido-carrito");
 const contadorCarrito = document.getElementById("contador-carrito");
 const cantidadCarrito = document.getElementById("cantidad-carrito");
 const botonCotizar = document.getElementById("solicitar-cotizacion");
 const anio = document.getElementById("anio");
 
-// Año actual del pie de página
+
+/* =========================================
+   INICIALIZACIÓN
+========================================= */
+
 if (anio) {
     anio.textContent = new Date().getFullYear();
 }
 
-/* ==========================================
-   AÑADIR SERVICIOS AL CARRITO
-   ========================================== */
+// El carrito empieza oculto
+if (seccionCarrito) {
+    seccionCarrito.hidden = true;
+}
 
-document.querySelectorAll(".boton-anadir").forEach((boton) => {
+if (botonVerCarrito) {
+    botonVerCarrito.setAttribute("aria-expanded", "false");
+    actualizarTextoBotonCarrito();
+}
+
+
+/* =========================================
+   AÑADIR SERVICIOS
+========================================= */
+
+botonesAnadir.forEach((boton) => {
     boton.addEventListener("click", () => {
-        const id = boton.dataset.id;
+        const id = boton.dataset.producto;
 
         if (!productos[id]) {
+            mostrarAviso("No se encontró ese servicio.");
             return;
         }
 
-        // Evitamos añadir el mismo servicio dos veces
-        if (carrito.some((producto) => producto.id === id)) {
-            mostrarAviso("Este servicio ya está en tu carrito.");
+        // Evitar añadir el mismo servicio más de una vez
+        if (carrito.includes(id)) {
+            mostrarAviso("Ese servicio ya está en tu carrito.");
             return;
         }
 
-        carrito.push({
-            id: id,
-            nombre: productos[id].nombre
-        });
+        carrito.push(id);
 
         actualizarCarrito();
-        mostrarAviso("¡Servicio añadido al carrito!");
+        mostrarAviso("Servicio añadido al carrito.");
 
-        // Cambiamos temporalmente el texto del botón
-        const textoOriginal = boton.innerHTML;
-        boton.innerHTML = "Añadido ✓";
+        // Confirmación visual temporal en el botón
+        const textoOriginal = boton.textContent;
+        boton.textContent = "Añadido ✓";
+        boton.disabled = true;
 
         setTimeout(() => {
-            boton.innerHTML = textoOriginal;
-        }, 1000);
+            boton.textContent = textoOriginal;
+            boton.disabled = false;
+        }, 900);
     });
 });
 
-/* ==========================================
+
+/* =========================================
+   VER Y OCULTAR EL CARRITO
+========================================= */
+
+if (botonVerCarrito && seccionCarrito) {
+    botonVerCarrito.addEventListener("click", () => {
+        const mostrar = seccionCarrito.hidden;
+
+        seccionCarrito.hidden = !mostrar;
+
+        botonVerCarrito.setAttribute(
+            "aria-expanded",
+            String(mostrar)
+        );
+
+        actualizarTextoBotonCarrito();
+
+        if (mostrar) {
+            seccionCarrito.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
+}
+
+function actualizarTextoBotonCarrito() {
+    if (!botonVerCarrito) return;
+
+    const cantidad = carrito.length;
+    const estaAbierto = seccionCarrito
+        ? !seccionCarrito.hidden
+        : false;
+
+    botonVerCarrito.textContent = estaAbierto
+        ? `Ocultar carrito (${cantidad})`
+        : `Ver carrito (${cantidad})`;
+}
+
+
+/* =========================================
    MOSTRAR Y ACTUALIZAR EL CARRITO
-   ========================================== */
+========================================= */
 
 function actualizarCarrito() {
-    contenidoCarrito.innerHTML = "";
+    if (!contenidoCarrito) return;
+
+    contenidoCarrito.replaceChildren();
 
     if (carrito.length === 0) {
-        contenidoCarrito.innerHTML = `
-            <p class="carrito-vacio">
-                Tu carrito está vacío. ¡Elegí un servicio para comenzar!
-            </p>
-        `;
+        const mensaje = document.createElement("p");
+        mensaje.className = "carrito-vacio";
+        mensaje.textContent = "Todavía no has añadido servicios.";
+
+        contenidoCarrito.appendChild(mensaje);
     } else {
-        carrito.forEach((producto) => {
+        carrito.forEach((id) => {
+            const producto = productos[id];
+
             const elemento = document.createElement("article");
             elemento.className = "item-carrito";
 
             const informacion = document.createElement("div");
-            const nombre = document.createElement("h3");
+
+            const titulo = document.createElement("h3");
+            titulo.textContent = producto.nombre;
+
             const descripcion = document.createElement("p");
+            descripcion.textContent = producto.descripcion;
 
-            nombre.textContent = producto.nombre;
-            descripcion.textContent = "Precio pendiente de cotización";
-
-            informacion.appendChild(nombre);
-            informacion.appendChild(descripcion);
+            informacion.append(titulo, descripcion);
 
             const botonQuitar = document.createElement("button");
+            botonQuitar.type = "button";
             botonQuitar.className = "boton-quitar";
             botonQuitar.textContent = "Quitar";
-            botonQuitar.type = "button";
+            botonQuitar.setAttribute(
+                "aria-label",
+                `Quitar ${producto.nombre} del carrito`
+            );
 
             botonQuitar.addEventListener("click", () => {
-                quitarDelCarrito(producto.id);
+                quitarDelCarrito(id);
             });
 
-            elemento.appendChild(informacion);
-            elemento.appendChild(botonQuitar);
-
+            elemento.append(informacion, botonQuitar);
             contenidoCarrito.appendChild(elemento);
         });
     }
 
-    const cantidad = carrito.length;
-    const textoCantidad = cantidad === 1
-        ? "1 servicio"
-        : `${cantidad} servicios`;
+    if (contadorCarrito) {
+        contadorCarrito.textContent = carrito.length;
+    }
 
-    contadorCarrito.textContent = textoCantidad;
-    cantidadCarrito.textContent = cantidad;
+    if (cantidadCarrito) {
+        cantidadCarrito.textContent = carrito.length;
+    }
 
-    botonCotizar.disabled = cantidad === 0;
+    actualizarTextoBotonCarrito();
+
+    // Activar o desactivar el botón de cotización
+    if (botonCotizar) {
+        botonCotizar.disabled = carrito.length === 0;
+    }
+
+    // Sincronizar los botones del catálogo con el carrito
+    botonesAnadir.forEach((boton) => {
+        const seleccionado = carrito.includes(boton.dataset.producto);
+
+        boton.disabled = seleccionado;
+        boton.textContent = seleccionado
+            ? "Añadido ✓"
+            : "Añadir al carrito";
+    });
 }
 
-/* ==========================================
+
+/* =========================================
    QUITAR SERVICIOS
-   ========================================== */
+========================================= */
 
 function quitarDelCarrito(id) {
-    const indice = carrito.findIndex((producto) => producto.id === id);
+    const indice = carrito.indexOf(id);
 
-    if (indice !== -1) {
-        carrito.splice(indice, 1);
-        actualizarCarrito();
-        mostrarAviso("Servicio eliminado del carrito.");
-    }
+    if (indice === -1) return;
+
+    carrito.splice(indice, 1);
+
+    actualizarCarrito();
+    mostrarAviso("Servicio eliminado del carrito.");
 }
 
-/* ==========================================
-   MENSAJES PARA EL CLIENTE
-   ========================================== */
+
+/* =========================================
+   AVISOS AL USUARIO
+========================================= */
 
 function mostrarAviso(mensaje) {
     let aviso = document.getElementById("aviso-tienda");
@@ -164,52 +254,85 @@ function mostrarAviso(mensaje) {
             bottom: "20px",
             left: "50%",
             transform: "translateX(-50%)",
-            padding: "13px 22px",
-            background: "#1d4ed8",
-            color: "#ffffff",
-            borderRadius: "10px",
-            boxShadow: "0 5px 20px rgba(0,0,0,0.15)",
-            zIndex: "9999",
+            zIndex: "1000",
             maxWidth: "90%",
-            textAlign: "center",
-            fontSize: "14px"
+            padding: "12px 20px",
+            background: "#1f2937",
+            color: "#ffffff",
+            borderRadius: "8px",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+            textAlign: "center"
         });
 
         document.body.appendChild(aviso);
     }
 
     aviso.textContent = mensaje;
+    aviso.hidden = false;
+
+    // Reiniciar el temporizador si hay otro aviso
+    if (aviso._temporizador) {
+        clearTimeout(aviso._temporizador);
+    }
+
+    aviso._temporizador = setTimeout(() => {
+        aviso.hidden = true;
+    }, 2500);
 }
 
-/* ==========================================
-   SOLICITUD DE COTIZACIÓN
-   ========================================== */
 
-botonCotizar.addEventListener("click", () => {
+/* =========================================
+   SOLICITUD DE COTIZACIÓN
+========================================= */
+
+if (botonCotizar) {
+    botonCotizar.addEventListener("click", generarCotizacion);
+}
+
+function generarCotizacion() {
     if (carrito.length === 0) {
-        mostrarAviso("Primero añadí un servicio al carrito.");
+        mostrarAviso("Añade al menos un servicio antes de cotizar.");
         return;
     }
 
-    // Por ahora generamos un comprobante preliminar.
-    // La numeración global se conectará después con Google Sheets.
-    const numeroTemporal = "BORRADOR";
-    const fecha = new Date().toLocaleDateString("es-CR", {
+    const fecha = new Date();
+
+    const fechaFormato = fecha.toLocaleDateString("es-CR", {
         year: "numeric",
         month: "long",
         day: "numeric"
     });
 
+    const horaFormato = fecha.toLocaleTimeString("es-CR", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    // Por ahora es un identificador local provisional.
+    // Más adelante se conectará un contador centralizado.
+    const numeroTemporal = "PENDIENTE";
+
     const ventana = window.open("", "_blank");
 
     if (!ventana) {
-        mostrarAviso("Permití las ventanas emergentes para ver tu solicitud.");
+        mostrarAviso(
+            "El navegador bloqueó la ventana. Permite las ventanas emergentes e inténtalo de nuevo."
+        );
         return;
     }
 
-    const listaProductos = carrito.map((producto) => `
-        <li>${escaparHTML(producto.nombre)}</li>
-    `).join("");
+    const listaServicios = carrito
+        .map((id) => {
+            const producto = productos[id];
+
+            return `
+                <li>
+                    <strong>${escaparHTML(producto.nombre)}</strong>
+                    <p>${escaparHTML(producto.descripcion)}</p>
+                </li>
+            `;
+        })
+        .join("");
 
     ventana.document.write(`
         <!DOCTYPE html>
@@ -218,43 +341,74 @@ botonCotizar.addEventListener("click", () => {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Solicitud de cotización - DraxionTech</title>
+
             <style>
                 body {
-                    font-family: Arial, sans-serif;
-                    color: #111827;
-                    max-width: 760px;
+                    max-width: 800px;
                     margin: 40px auto;
-                    padding: 25px;
+                    padding: 24px;
+                    color: #1f2937;
+                    font-family: Arial, Helvetica, sans-serif;
                     line-height: 1.6;
                 }
+
                 header {
-                    border-bottom: 3px solid #2563eb;
                     padding-bottom: 18px;
-                    margin-bottom: 25px;
+                    border-bottom: 3px solid #2563eb;
                 }
-                h1 { color: #1d4ed8; }
+
+                h1 {
+                    color: #2563eb;
+                    margin-bottom: 4px;
+                }
+
+                h2 {
+                    margin-top: 28px;
+                }
+
+                li {
+                    margin: 18px 0;
+                    padding: 14px;
+                    background: #f3f4f6;
+                    border-radius: 6px;
+                }
+
+                li p {
+                    margin-bottom: 0;
+                }
+
                 .aviso {
+                    margin-top: 24px;
+                    padding: 16px;
                     background: #eff6ff;
                     border-left: 4px solid #2563eb;
-                    padding: 15px;
-                    margin: 25px 0;
                 }
-                li { margin: 12px 0; }
+
                 button {
+                    margin-top: 24px;
+                    padding: 12px 20px;
+                    border: none;
+                    border-radius: 6px;
                     background: #2563eb;
                     color: white;
-                    border: none;
-                    padding: 12px 20px;
-                    border-radius: 8px;
-                    cursor: pointer;
                     font-size: 16px;
+                    font-weight: bold;
+                    cursor: pointer;
                 }
+
                 @media print {
-                    button { display: none; }
-                    body { margin: 0; }
+                    button {
+                        display: none;
+                    }
+
+                    body {
+                        margin: 0;
+                        padding: 0;
+                    }
                 }
             </style>
         </head>
+
         <body>
             <header>
                 <h1>DraxionTech</h1>
@@ -262,18 +416,25 @@ botonCotizar.addEventListener("click", () => {
             </header>
 
             <h2>Solicitud de cotización #${numeroTemporal}</h2>
-            <p><strong>Fecha:</strong> ${escaparHTML(fecha)}</p>
 
-            <h3>Servicios solicitados</h3>
-            <ul>${listaProductos}</ul>
+            <p><strong>Fecha:</strong> ${escaparHTML(fechaFormato)}</p>
+            <p><strong>Hora:</strong> ${escaparHTML(horaFormato)}</p>
+
+            <h2>Servicios solicitados</h2>
+
+            <ol>
+                ${listaServicios}
+            </ol>
 
             <div class="aviso">
-                <strong>Precios pendientes de cotización</strong>
+                <strong>Información importante</strong>
                 <p>
-                    Nuestro equipo de soporte se comunicará con el cliente
-                    para conocer los detalles del proyecto y definir el precio.
+                    Esta solicitud no contiene precios. El costo se determinará
+                    después de revisar las necesidades y el alcance del proyecto.
                 </p>
-                <p>Este documento no es una factura fiscal ni un comprobante de pago.</p>
+                <p>
+                    Este documento no es una factura fiscal ni un comprobante de pago.
+                </p>
             </div>
 
             <button onclick="window.print()">Imprimir o guardar como PDF</button>
@@ -282,22 +443,30 @@ botonCotizar.addEventListener("click", () => {
     `);
 
     ventana.document.close();
-});
-
-/* ==========================================
-   PROTECCIÓN DE TEXTO EN EL DOCUMENTO
-   ========================================== */
-
-function escaparHTML(texto) {
-    return String(texto).replace(/[&<>"']/g, (caracter) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-    })[caracter]);
 }
 
-// Estado inicial
-actualizarCarrito();
 
+/* =========================================
+   SEGURIDAD: ESCAPAR TEXTO HTML
+========================================= */
+
+function escaparHTML(texto) {
+    return String(texto).replace(/[&<>"']/g, (caracter) => {
+        const entidades = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        };
+
+        return entidades[caracter];
+    });
+}
+
+
+/* =========================================
+   ESTADO INICIAL
+========================================= */
+
+actualizarCarrito();
