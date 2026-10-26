@@ -1,129 +1,160 @@
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solicita una cotización de los servicios tecnológicos de DraxionTech.">
-    <title>Tienda | DraxionTech</title>
+    <meta name="description" content="Conoce los servicios tecnológicos de DraxionTech y solicita una cotización personalizada.">
+    <title>Servicios | DraxionTech</title>
     <link rel="stylesheet" href="tienda.css">
     <script src="tienda.js" defer></script>
 </head>
+
 <body>
-
     <header class="encabezado">
-        <a class="logo" href="index.html">Draxion<span>Tech</span></a>
+        <div class="contenedor encabezado-contenido">
+            <a class="logo" href="index.html">DraxionTech</a>
 
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="proyectos.html">Proyectos completados</a>
-            <a href="tienda.html" class="activo" aria-current="page">Tienda</a>
-        </nav>
+            <nav class="navegacion" aria-label="Navegación principal">
+                <a href="index.html">Inicio</a>
+                <a href="informacion.html">Información</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="servicios.html">Servicios</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
+    <main class="contenedor principal">
         <section class="presentacion">
-            <p class="etiqueta">SOLUCIONES TECNOLÓGICAS</p>
-            <h1>Tu próximo proyecto <span>comienza aquí.</span></h1>
-            <p>
-                Elegí los servicios que necesitás y enviá tu solicitud
-                de cotización a DraxionTech.
+            <p class="etiqueta">NUESTROS SERVICIOS</p>
+            <h1>Tu visión, nuestro código.</h1>
+            <p class="descripcion-principal">
+                En DraxionTech transformamos tus ideas en soluciones digitales.
+                Explora nuestros servicios y selecciona los que necesitas.
             </p>
-
-            <div class="aviso-precios">
-                <strong>¿Cuánto cuestan nuestros servicios?</strong>
-                <p>
-                    Los precios se definirán con nuestro equipo de soporte
-                    después de conocer tus necesidades y los detalles del proyecto.
-                </p>
-                <p class="sin-compromiso">
-                    Añadir servicios al carrito no implica ningún pago.
-                </p>
-            </div>
         </section>
 
-        <section id="catalogo" class="catalogo">
-            <div class="titulo-seccion">
-                <div>
-                    <p class="etiqueta">NUESTRO CATÁLOGO</p>
-                    <h2>Explorá nuestros servicios</h2>
-                </div>
-                <span id="contador-carrito" class="contador">0 servicios</span>
-            </div>
+        <section class="aviso-precios" aria-label="Información sobre cotizaciones">
+            <h2>¿Cuánto cuesta un servicio?</h2>
+            <p>
+                Cada proyecto tiene necesidades diferentes. El precio se
+                determina después de conocer tu idea, los requisitos y el
+                alcance del trabajo. Selecciona los servicios que te interesan
+                y solicita una cotización personalizada.
+            </p>
+        </section>
+
+        <section class="catalogo" aria-labelledby="titulo-catalogo">
+            <h2 id="titulo-catalogo">Explora nuestros servicios</h2>
 
             <div class="productos">
-
                 <article class="producto">
-                    <div class="icono-producto">✦</div>
+                    <div class="icono-servicio" aria-hidden="true">✦</div>
                     <h3>Anuncios y trabajos con IA</h3>
-                    <p>Contenido creativo, anuncios y soluciones con inteligencia artificial adaptados a tu proyecto.</p>
-                    <button class="boton-anadir" data-id="ia">Añadir al carrito <span>＋</span></button>
+                    <p>
+                        Contenido creativo, anuncios y recursos visuales
+                        elaborados con ayuda de inteligencia artificial.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="ia">
+                        Añadir al carrito
+                    </button>
                 </article>
 
                 <article class="producto">
-                    <div class="icono-producto">↻</div>
+                    <div class="icono-servicio" aria-hidden="true">⚙</div>
                     <h3>Edición y mantenimiento web</h3>
-                    <p>Mejoras, correcciones, actualizaciones y mantenimiento para páginas web existentes.</p>
-                    <button class="boton-anadir" data-id="mantenimiento">Añadir al carrito <span>＋</span></button>
+                    <p>
+                        Actualización de contenido, mejoras visuales y
+                        mantenimiento de páginas web existentes.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="mantenimiento">
+                        Añadir al carrito
+                    </button>
                 </article>
 
                 <article class="producto">
-                    <div class="icono-producto">⌘</div>
+                    <div class="icono-servicio" aria-hidden="true">⌘</div>
                     <h3>Creación de páginas web</h3>
-                    <p>Páginas web personalizadas para presentar tu negocio, marca o proyecto.</p>
-                    <button class="boton-anadir" data-id="web">Añadir al carrito <span>＋</span></button>
+                    <p>
+                        Páginas web personalizadas para presentar tu negocio,
+                        proyecto, servicio o idea en Internet.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="web">
+                        Añadir al carrito
+                    </button>
                 </article>
 
                 <article class="producto">
-                    <div class="icono-producto">▦</div>
+                    <div class="icono-servicio" aria-hidden="true">▦</div>
                     <h3>Creación de códigos QR</h3>
-                    <p>Códigos QR para compartir enlaces y facilitar el acceso a tus contenidos.</p>
-                    <button class="boton-anadir" data-id="qr">Añadir al carrito <span>＋</span></button>
+                    <p>
+                        Códigos QR para enlazar a páginas web, información
+                        digital y otros recursos compatibles.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="qr">
+                        Añadir al carrito
+                    </button>
                 </article>
 
                 <article class="producto">
-                    <div class="icono-producto">▣</div>
+                    <div class="icono-servicio" aria-hidden="true">▣</div>
                     <h3>Creación de aplicaciones</h3>
-                    <p>Aplicaciones diseñadas según las necesidades y los objetivos de tu proyecto.</p>
-                    <button class="boton-anadir" data-id="aplicaciones">Añadir al carrito <span>＋</span></button>
+                    <p>
+                        Desarrollo de aplicaciones adaptadas a las necesidades
+                        y características de tu proyecto.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="aplicaciones">
+                        Añadir al carrito
+                    </button>
                 </article>
-
             </div>
         </section>
 
-        <section id="carrito" class="carrito">
-            <div class="titulo-carrito">
-                <div>
-                    <p class="etiqueta">TU PEDIDO</p>
-                    <h2>🛒 Tu carrito</h2>
-                </div>
-                <span id="cantidad-carrito" class="contador">0</span>
-            </div>
-
-            <div id="contenido-carrito" class="contenido-carrito">
-                <p class="carrito-vacio">Tu carrito está vacío. ¡Elegí un servicio para comenzar!</p>
-            </div>
-
-            <div class="nota-carrito">
-                <strong>Sin precios por ahora</strong>
-                <p>Primero revisaremos tu solicitud y hablaremos con vos para definir el alcance y el precio.</p>
-            </div>
-
-            <button id="solicitar-cotizacion" class="boton-cotizar" disabled>
-                Solicitar cotización →
+        <section class="zona-carrito" aria-label="Carrito de servicios">
+            <button
+                id="ver-carrito"
+                class="boton-ver-carrito"
+                type="button"
+                aria-expanded="false"
+                aria-controls="carrito"
+            >
+                Ver carrito (<span id="contador-carrito">0</span>)
             </button>
 
-            <p class="nota-final">Tu solicitud no representa una compra ni un pago.</p>
+            <section id="carrito" class="carrito" aria-labelledby="titulo-carrito" hidden>
+                <div class="encabezado-carrito">
+                    <div>
+                        <p class="etiqueta">TU SELECCIÓN</p>
+                        <h2 id="titulo-carrito">Carrito de servicios</h2>
+                    </div>
+                </div>
+
+                <div id="contenido-carrito" aria-live="polite">
+                    <p class="carrito-vacio">Todavía no has añadido servicios.</p>
+                </div>
+
+                <div class="resumen-carrito">
+                    <p>
+                        Servicios seleccionados:
+                        <strong id="cantidad-carrito">0</strong>
+                    </p>
+                    <p class="nota-carrito">
+                        La solicitud no incluye precios. Estos se definirán
+                        durante el proceso de cotización.
+                    </p>
+                    <button id="solicitar-cotizacion" class="boton-cotizar" type="button">
+                        Solicitar cotización
+                    </button>
+                </div>
+            </section>
         </section>
     </main>
 
-    <footer>
-        <a class="logo" href="index.html">Draxion<span>Tech</span></a>
-        <p>Tu visión, nuestro código.</p>
-        <p>© <span id="anio"></span> DraxionTech</p>
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <p>© <span id="anio">2026</span> DraxionTech. Todos los derechos reservados.</p>
+            <p>Tu visión, nuestro código.</p>
+        </div>
     </footer>
-
 </body>
 </html>
