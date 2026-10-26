@@ -601,3 +601,615 @@ main {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* =========================================
+   DRAXIONTECH — NUEVA PÁGINA DE INICIO
+   Agregar al final de style.css
+========================================= */
+
+.pagina-inicio {
+    --fondo-hero: #030711;
+    --azul-hero: #087cff;
+    --cian-hero: #00d9ff;
+    background: var(--fondo-hero);
+    color: #f7f9ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.pagina-inicio .encabezado {
+    position: relative;
+    z-index: 10;
+    min-height: 78px;
+    padding: 12px 5.4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    background: rgba(3, 7, 17, 0.94);
+    border-bottom: 1px solid rgba(30, 111, 255, 0.25);
+    backdrop-filter: blur(14px);
+}
+
+.pagina-inicio .marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: clamp(20px, 2.1vw, 29px);
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+.pagina-inicio .marca .logo {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    color: var(--cian-hero);
+    font-size: 39px;
+    font-weight: 900;
+    font-style: italic;
+    border-left: 3px solid var(--azul-hero);
+    text-shadow: 0 0 18px rgba(0, 145, 255, 0.65);
+}
+
+.pagina-inicio .azul {
+    color: var(--azul-hero);
+}
+
+.pagina-inicio .navegacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(13px, 2.2vw, 32px);
+}
+
+.pagina-inicio .navegacion a {
+    position: relative;
+    padding: 10px 0;
+    color: #dce6fa;
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pagina-inicio .navegacion a:hover,
+.pagina-inicio .navegacion a.activo {
+    color: var(--cian-hero);
+}
+
+.pagina-inicio .navegacion a.activo::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 2px;
+    background: var(--cian-hero);
+    box-shadow: 0 0 12px var(--cian-hero);
+}
+
+.pagina-inicio .boton-cotizacion {
+    flex-shrink: 0;
+    padding: 11px 19px;
+    color: var(--cian-hero);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 650;
+    border: 1px solid var(--cian-hero);
+    border-radius: 30px;
+    box-shadow: inset 0 0 10px rgba(0, 217, 255, 0.05),
+                0 0 15px rgba(0, 217, 255, 0.08);
+    transition: background 0.2s, color 0.2s;
+}
+
+.pagina-inicio .boton-cotizacion:hover {
+    color: #00101a;
+    background: var(--cian-hero);
+}
+
+/* Hero principal */
+
+.pagina-inicio .inicio-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: calc(100svh - 78px);
+    padding: 65px 5.4% 110px;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(ellipse at 76% 42%,
+            rgba(0, 57, 163, 0.22), transparent 42%),
+        linear-gradient(115deg, #030711 35%, #040b1c 75%, #02050c);
+}
+
+.pagina-inicio .inicio-hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(130deg, transparent 66%, rgba(0, 93, 255, 0.08) 66.2%, transparent 68%),
+        linear-gradient(145deg, transparent 73%, rgba(0, 217, 255, 0.08) 73.2%, transparent 73.5%);
+}
+
+.pagina-inicio .hero-contenido {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+    align-items: center;
+    gap: 30px;
+}
+
+.pagina-inicio .hero-texto {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.pagina-inicio .hero-etiqueta {
+    margin-bottom: 24px;
+    color: #81c5ff;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 4px;
+    line-height: 1.9;
+}
+
+.pagina-inicio .hero-etiqueta span {
+    padding: 0 5px;
+    color: var(--cian-hero);
+}
+
+.pagina-inicio .hero-texto h1 {
+    margin: 0 0 23px;
+    color: #f8f9ff;
+    font-size: clamp(42px, 5.2vw, 76px);
+    font-weight: 800;
+    line-height: 1.03;
+    letter-spacing: -3.5px;
+}
+
+.pagina-inicio .hero-texto h1 .azul {
+    color: #087cff;
+    text-shadow: 0 0 35px rgba(0, 95, 255, 0.18);
+}
+
+.pagina-inicio .hero-descripcion {
+    max-width: 490px;
+    margin: 0 0 28px;
+    color: #c3d0e7;
+    font-size: clamp(15px, 1.35vw, 18px);
+    line-height: 1.65;
+}
+
+.pagina-inicio .hero-botones {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.pagina-inicio .boton-hero {
+    min-height: 46px;
+    padding: 13px 21px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pagina-inicio .boton-hero:hover {
+    transform: translateY(-3px);
+}
+
+.pagina-inicio .boton-principal {
+    color: white;
+    background: linear-gradient(110deg, #087cff, #0064ec);
+    box-shadow: 0 0 25px rgba(0, 111, 255, 0.3);
+}
+
+.pagina-inicio .boton-principal:hover {
+    box-shadow: 0 0 35px rgba(0, 111, 255, 0.5);
+}
+
+.pagina-inicio .boton-secundario {
+    color: #f1f7ff;
+    border: 1px solid #008cff;
+    background: rgba(2, 12, 30, 0.65);
+}
+
+.pagina-inicio .boton-secundario span {
+    color: var(--cian-hero);
+}
+
+/* Laptop ilustrativa creada con CSS */
+
+.pagina-inicio .hero-visual {
+    position: relative;
+    min-width: 0;
+    perspective: 1100px;
+}
+
+.pagina-inicio .hero-resplandor {
+    position: absolute;
+    inset: 18% 5% 0;
+    border-radius: 50%;
+    background: #006aff;
+    opacity: 0.2;
+    filter: blur(75px);
+}
+
+.pagina-inicio .laptop {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    transform: rotateY(-8deg) rotateX(2deg);
+    filter: drop-shadow(0 28px 28px rgba(0, 67, 255, 0.2));
+}
+
+.pagina-inicio .laptop-pantalla {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1.45;
+    padding: 4% 5%;
+    border: 2px solid #152b4b;
+    border-bottom: 5px solid #101b2e;
+    border-radius: 15px 15px 5px 5px;
+    background:
+        radial-gradient(ellipse at 80% 38%, rgba(0, 101, 255, 0.25), transparent 50%),
+        linear-gradient(140deg, #08152b, #020610 75%);
+    box-shadow: inset 0 0 24px rgba(0, 108, 255, 0.12),
+                0 0 18px rgba(0, 113, 255, 0.16);
+}
+
+.pagina-inicio .demo-navegacion {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 4%;
+    border-bottom: 1px solid rgba(109, 165, 255, 0.16);
+    color: #dceaff;
+    font-size: clamp(6px, 0.7vw, 10px);
+}
+
+.pagina-inicio .demo-logo {
+    display: grid;
+    place-items: center;
+    width: 19px;
+    height: 19px;
+    color: var(--cian-hero);
+    border: 1px solid #087cff;
+    font-weight: 900;
+}
+
+.pagina-inicio .demo-links {
+    margin-left: auto;
+    color: #8ea7cb;
+    font-size: clamp(5px, 0.55vw, 8px);
+}
+
+.pagina-inicio .demo-contenido {
+    min-height: 49%;
+    padding: 8% 1% 4%;
+    background:
+        linear-gradient(90deg, rgba(2, 8, 20, 0.7), rgba(2, 8, 20, 0.12)),
+        radial-gradient(ellipse at 80% 45%, #174b8d 0%, #0b1c3b 29%, transparent 60%);
+}
+
+.pagina-inicio .demo-etiqueta {
+    color: #6fcfff;
+    font-size: clamp(5px, 0.65vw, 9px);
+    letter-spacing: 2px;
+}
+
+.pagina-inicio .demo-contenido h2 {
+    margin: 10px 0;
+    color: #fff;
+    font-size: clamp(15px, 2vw, 29px);
+    line-height: 1.12;
+    font-weight: 750;
+}
+
+.pagina-inicio .demo-contenido h2 span {
+    color: #20a7ff;
+}
+
+.pagina-inicio .demo-contenido p {
+    color: #a7bbd9;
+    font-size: clamp(6px, 0.8vw, 11px);
+}
+
+.pagina-inicio .demo-accion {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 7px 12px;
+    color: white;
+    background: #087cff;
+    border-radius: 4px;
+    font-size: clamp(6px, 0.7vw, 9px);
+}
+
+.pagina-inicio .demo-servicios {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2%;
+    margin-top: 2%;
+}
+
+.pagina-inicio .demo-servicios > div {
+    min-width: 0;
+    min-height: 58px;
+    padding: 8% 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(63, 133, 255, 0.15);
+    border-radius: 5px;
+    background: linear-gradient(145deg, #0d1b32, #050b17);
+    color: #d5e3f9;
+    text-align: center;
+    font-size: clamp(5px, 0.65vw, 9px);
+}
+
+.pagina-inicio .demo-icono {
+    color: #25baff;
+    font-size: clamp(15px, 1.6vw, 23px);
+    text-shadow: 0 0 12px rgba(0, 166, 255, 0.5);
+}
+
+.pagina-inicio .laptop-base {
+    position: relative;
+    width: 112%;
+    height: 15px;
+    margin-left: -6%;
+    border-radius: 2px 2px 50% 50%;
+    border: 1px solid #1c4779;
+    background: linear-gradient(#496a92, #101c30 38%, #02050b 90%);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(0, 110, 255, 0.22);
+}
+
+.pagina-inicio .laptop-base::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 38%;
+    width: 24%;
+    height: 4px;
+    border-radius: 0 0 8px 8px;
+    background: #557ba7;
+}
+
+.pagina-inicio .hero-linea {
+    position: absolute;
+    z-index: 1;
+    width: 35%;
+    height: 2px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, #087cff, #00d9ff);
+    box-shadow: 0 0 15px #087cff;
+    transform: rotate(-53deg);
+}
+
+.pagina-inicio .hero-linea-uno {
+    top: 16%;
+    right: -3%;
+}
+
+.pagina-inicio .hero-linea-dos {
+    bottom: 12%;
+    left: -4%;
+    transform: rotate(-35deg);
+    opacity: 0.6;
+}
+
+/* Indicador inferior */
+
+.pagina-inicio .hero-explorar {
+    position: absolute;
+    bottom: 23px;
+    left: 50%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+    transform: translateX(-50%);
+    color: #78baff;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 4px;
+    white-space: nowrap;
+}
+
+.pagina-inicio .hero-raton {
+    width: 19px;
+    height: 32px;
+    display: grid;
+    place-items: start center;
+    padding-top: 6px;
+    border: 2px solid #087cff;
+    border-radius: 12px;
+}
+
+.pagina-inicio .hero-raton span {
+    width: 2px;
+    height: 6px;
+    background: var(--cian-hero);
+    animation: cursor-hero 1.2s infinite;
+}
+
+.pagina-inicio .hero-flecha {
+    margin-top: -20px;
+    color: #087cff;
+    font-size: 26px;
+    line-height: 1;
+}
+
+@keyframes cursor-hero {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    60% { opacity: 0.2; transform: translateY(5px); }
+}
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+    .pagina-inicio .encabezado {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pagina-inicio .hero-contenido {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .pagina-inicio .hero-texto h1 {
+        letter-spacing: -2px;
+    }
+
+    .pagina-inicio .hero-etiqueta {
+        letter-spacing: 2px;
+    }
+
+    .pagina-inicio .boton-hero {
+        padding: 12px 15px;
+    }
+}
+
+/* Móvil */
+
+@media (max-width: 700px) {
+    .pagina-inicio .encabezado {
+        padding: 14px 5%;
+        gap: 12px;
+    }
+
+    .pagina-inicio .marca {
+        font-size: 23px;
+    }
+
+    .pagina-inicio .marca .logo {
+        width: 38px;
+        height: 38px;
+        font-size: 32px;
+    }
+
+    .pagina-inicio .navegacion {
+        order: 3;
+        width: 100%;
+        gap: 17px;
+    }
+
+    .pagina-inicio .navegacion a {
+        font-size: 11px;
+    }
+
+    .pagina-inicio .boton-cotizacion {
+        padding: 9px 12px;
+        font-size: 10px;
+    }
+
+    .pagina-inicio .inicio-hero {
+        min-height: auto;
+        padding: 62px 6% 115px;
+    }
+
+    .pagina-inicio .hero-contenido {
+        grid-template-columns: 1fr;
+        gap: 42px;
+    }
+
+    .pagina-inicio .hero-texto {
+        text-align: left;
+    }
+
+    .pagina-inicio .hero-etiqueta {
+        margin-bottom: 19px;
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .pagina-inicio .hero-texto h1 {
+        font-size: clamp(43px, 11vw, 65px);
+        letter-spacing: -2.5px;
+    }
+
+    .pagina-inicio .hero-descripcion {
+        font-size: 15px;
+    }
+
+    .pagina-inicio .hero-botones {
+        align-items: stretch;
+    }
+
+    .pagina-inicio .boton-hero {
+        min-height: 45px;
+        font-size: 11px;
+    }
+
+    .pagina-inicio .hero-visual {
+        width: 94%;
+        margin: 0 auto;
+    }
+
+    .pagina-inicio .laptop {
+        transform: none;
+    }
+
+    .pagina-inicio .demo-servicios > div {
+        min-height: 48px;
+    }
+
+    .pagina-inicio .hero-explorar {
+        bottom: 20px;
+        font-size: 8px;
+        letter-spacing: 3px;
+    }
+}
+
+@media (max-width: 390px) {
+    .pagina-inicio .navegacion {
+        gap: 12px;
+    }
+
+    .pagina-inicio .hero-botones {
+        flex-direction: column;
+    }
+
+    .pagina-inicio .boton-hero {
+        width: 100%;
+    }
+
+    .pagina-inicio .hero-etiqueta {
+        letter-spacing: 1px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pagina-inicio *,
+    .pagina-inicio *::before,
+    .pagina-inicio *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
