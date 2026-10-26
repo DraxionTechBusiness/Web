@@ -1,57 +1,126 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#08090d">
-    <meta name="description" content="DraxionTech crea páginas web modernas para llevar negocios e ideas al mundo digital.">
+    <meta name="theme-color" content="#030711">
+    <meta name="description" content="DraxionTech crea páginas web modernas y soluciones digitales para llevar tus ideas al mundo digital.">
     <title>DraxionTech | Tu visión, nuestro código</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
-<body>
+<body class="pagina-inicio">
 
     <header class="encabezado">
-        <a href="index.html" class="marca">
+        <a href="index.html" class="marca" aria-label="DraxionTech, inicio">
             <span class="logo">D</span>
             <span>Draxion<span class="azul">Tech</span></span>
         </a>
 
         <nav class="navegacion" aria-label="Navegación principal">
-            <a href="index.html" class="activo">Inicio</a>
-            <a href="informacion.html">Sobre nosotros</a>
+            <a href="index.html" class="activo" aria-current="page">Inicio</a>
             <a href="servicios.html">Servicios</a>
-            <a href="proyectos.html">Proyectos completados</a>
-            <a href="mailto:qrtech.business.cr@gmail.com">Contáctanos</a>
+            <a href="proyectos.html">Portafolio</a>
+            <a href="informacion.html">Sobre nosotros</a>
+            <a href="mailto:qrtech.business.cr@gmail.com">Contacto</a>
         </nav>
+
+        <a href="mailto:qrtech.business.cr@gmail.com?subject=Solicitud%20de%20cotizacion"
+           class="boton-cotizacion">
+            Solicitar cotización <span aria-hidden="true">→</span>
+        </a>
     </header>
 
-    <main>
-        <section class="introduccion">
-            <h1>Tu visión, nuestro código</h1>
+    <main class="inicio-hero">
+        <section class="hero-contenido">
 
-            <p>
-                Creamos páginas web modernas para llevar negocios e ideas
-                al mundo digital.
-            </p>
+            <div class="hero-texto">
+                <div class="hero-etiqueta">
+                    DISEÑO WEB <span>•</span> MANTENIMIENTO
+                    <span>•</span> SOLUCIONES DIGITALES
+                </div>
 
-            <div class="botones">
-                <a href="servicios.html" class="boton boton-azul">
-                    Descubre nuestros servicios
-                </a>
+                <h1>
+                    Tu visión,<br>
+                    nuestro <span class="azul">código.</span>
+                </h1>
 
-                <a href="informacion.html" class="boton boton-negro">
-                    Conoce DraxionTech
-                </a>
+                <p class="hero-descripcion">
+                    Creamos experiencias digitales a tu medida.
+                    Desde páginas web hasta soluciones creativas
+                    que ayudan a dar vida a tus ideas.
+                </p>
 
-                <a href="proyectos.html" class="boton boton-negro">
-                    Proyectos completados
-                </a>
+                <div class="hero-botones">
+                    <a href="servicios.html" class="boton-hero boton-principal">
+                        Conoce nuestros servicios
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                    <a href="mailto:qrtech.business.cr@gmail.com?subject=Solicitud%20de%20cotizacion"
+                       class="boton-hero boton-secundario">
+                        Solicitar cotización
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
             </div>
+
+            <div class="hero-visual" aria-label="Vista ilustrativa de una página web en una laptop">
+                <div class="hero-resplandor"></div>
+
+                <div class="laptop">
+                    <div class="laptop-pantalla">
+                        <div class="demo-navegacion">
+                            <span class="demo-logo">D</span>
+                            <span>Draxion<span class="azul">Tech</span></span>
+                            <span class="demo-links">Inicio　Servicios　Portafolio</span>
+                        </div>
+
+                        <div class="demo-contenido">
+                            <span class="demo-etiqueta">SOLUCIONES DIGITALES</span>
+                            <h2>Soluciones digitales<br>para tu <span>negocio</span></h2>
+                            <p>Tu próximo proyecto empieza aquí.</p>
+                            <span class="demo-accion">Conocer más →</span>
+                        </div>
+
+                        <div class="demo-servicios">
+                            <div>
+                                <span class="demo-icono">▱</span>
+                                <span>Diseño web</span>
+                            </div>
+                            <div>
+                                <span class="demo-icono">⚙</span>
+                                <span>Mantenimiento</span>
+                            </div>
+                            <div>
+                                <span class="demo-icono">⌘</span>
+                                <span>Códigos QR</span>
+                            </div>
+                            <div>
+                                <span class="demo-icono">✧</span>
+                                <span>Anuncios con IA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="laptop-base"></div>
+                </div>
+
+                <div class="hero-linea hero-linea-uno"></div>
+                <div class="hero-linea hero-linea-dos"></div>
+            </div>
+
         </section>
+
+        <a href="servicios.html" class="hero-explorar">
+            <span>DESLIZA PARA EXPLORAR</span>
+            <span class="hero-raton" aria-hidden="true">
+                <span></span>
+            </span>
+            <span class="hero-flecha" aria-hidden="true">⌄</span>
+        </a>
     </main>
 
     <script src="script.js"></script>
-
 </body>
 </html>
