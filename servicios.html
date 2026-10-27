@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#030711">
+    <meta name="theme-color" content="#070b14">
 
     <meta
         name="description"
@@ -25,15 +25,92 @@
         <span>Draxion<span class="azul">Tech</span></span>
     </a>
 
-    <nav class="navegacion" aria-label="Navegación principal">
-        <a href="index.html">Inicio</a>
-        <a href="servicios.html" class="activo" aria-current="page">Servicios</a>
-        <a href="proyectos.html">Proyectos completados</a>
-        <a href="informacion.html">Sobre nosotros</a>
-        <a href="tienda.html">Tienda</a>
-    </nav>
+    <button
+        type="button"
+        class="boton-menu-lateral"
+        id="abrir-menu"
+        aria-label="Abrir menú"
+        aria-controls="menu-lateral"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
 </header>
+
+<div class="menu-fondo" id="menu-fondo" hidden></div>
+
+<aside
+    class="menu-lateral"
+    id="menu-lateral"
+    aria-label="Menú principal"
+    aria-hidden="true"
+    inert
+>
+    <div class="menu-lateral-cabecera">
+
+        <a href="index.html" class="menu-marca" aria-label="DraxionTech, inicio">
+            <span class="logo">D</span>
+            <span>Draxion<span class="azul">Tech</span></span>
+        </a>
+
+        <button
+            type="button"
+            class="cerrar-menu"
+            id="cerrar-menu"
+            aria-label="Cerrar menú"
+        >
+            &times;
+        </button>
+
+    </div>
+
+    <p class="menu-titulo">Navegación</p>
+
+    <nav class="menu-enlaces" aria-label="Secciones del sitio">
+
+        <a href="index.html" class="menu-enlace">
+            <span class="menu-icono" aria-hidden="true">⌂</span>
+            <span>Inicio</span>
+        </a>
+
+        <a
+            href="informacion.html"
+            class="menu-enlace"
+        >
+            <span class="menu-icono" aria-hidden="true">ⓘ</span>
+            <span>Sobre nosotros</span>
+        </a>
+
+        <a
+            href="servicios.html"
+            class="menu-enlace activo"
+            aria-current="page"
+        >
+            <span class="menu-icono" aria-hidden="true">⚙</span>
+            <span>Servicios</span>
+        </a>
+
+        <a href="proyectos.html" class="menu-enlace">
+            <span class="menu-icono" aria-hidden="true">▣</span>
+            <span>Proyectos completados</span>
+        </a>
+
+        <a href="tienda.html" class="menu-enlace">
+            <span class="menu-icono" aria-hidden="true">🛍</span>
+            <span>Tienda</span>
+        </a>
+
+    </nav>
+
+    <div class="menu-lateral-pie">
+        <p><span class="menu-punto"></span> Servicios digitales</p>
+        <p><strong>Tu visión, nuestro código.</strong></p>
+    </div>
+
+</aside>
 
 <main>
 
@@ -207,6 +284,8 @@
 <footer class="pie">
     <p>© 2026 DraxionTech. Todos los derechos reservados.</p>
 </footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
