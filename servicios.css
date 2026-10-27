@@ -1,9 +1,24 @@
 
 /* ========================================
    DRAXIONTECH — SERVICIOS
-   ======================================== */
+   Menú lateral + diseño original
+======================================== */
 
-/* CONFIGURACIÓN GENERAL */
+:root {
+    --fondo: #030711;
+    --fondo-panel: #0c182c;
+    --azul: #328bff;
+    --azul-intenso: #1764e8;
+    --cian: #00d9ff;
+    --blanco: #ffffff;
+    --texto: #c3cee2;
+    --borde: rgba(55, 130, 255, 0.35);
+    --transicion: 0.3s ease;
+}
+
+/* ========================================
+   CONFIGURACIÓN GENERAL
+======================================== */
 
 * {
     margin: 0;
@@ -18,8 +33,8 @@ html {
 body {
     min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
-    background-color: #030711;
+    color: var(--blanco);
+    background-color: var(--fondo);
     background-image:
         radial-gradient(
             ellipse at 50% 20%,
@@ -31,6 +46,11 @@ body {
     background-position: center top;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+body.menu-abierto {
+    overflow: hidden;
 }
 
 a {
@@ -38,26 +58,36 @@ a {
     text-decoration: none;
 }
 
+button {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 main {
     width: 100%;
 }
 
 /* ========================================
-   BARRA DE NAVEGACIÓN
-   ======================================== */
+   ENCABEZADO
+======================================== */
 
 .encabezado {
     position: relative;
-    z-index: 10;
+    z-index: 100;
     width: 100%;
     min-height: 78px;
     padding: 15px 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
-    border-bottom: 1px solid rgba(55, 130, 255, 0.35);
+    gap: 20px;
+    border-bottom: 1px solid var(--borde);
     background: rgba(5, 10, 22, 0.96);
+    backdrop-filter: blur(14px);
     animation: servicios-bajada 0.7s ease both;
 }
 
@@ -77,7 +107,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: var(--blanco);
     font-size: 1.8rem;
     font-weight: 900;
     font-style: italic;
@@ -87,45 +117,290 @@ main {
 }
 
 .azul {
-    color: #368bff;
+    color: var(--azul);
 }
 
-.navegacion {
+/* ========================================
+   BOTÓN HAMBURGUESA
+======================================== */
+
+.boton-menu-lateral {
+    width: 48px;
+    height: 44px;
+    flex-shrink: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
+    gap: 6px;
+    border: 1px solid rgba(0, 217, 255, 0.25);
+    border-radius: 12px;
+    background: rgba(12, 24, 44, 0.9);
+    cursor: pointer;
+    transition:
+        background var(--transicion),
+        border-color var(--transicion),
+        box-shadow var(--transicion);
 }
 
-.navegacion a {
+.boton-menu-lateral span {
+    width: 22px;
+    height: 2px;
+    display: block;
+    border-radius: 5px;
+    background: var(--cian);
+    box-shadow: 0 0 8px rgba(0, 217, 255, 0.35);
+    transition:
+        transform var(--transicion),
+        opacity var(--transicion);
+}
+
+.boton-menu-lateral:hover {
+    background: rgba(22, 119, 255, 0.15);
+    border-color: var(--cian);
+    box-shadow: 0 0 18px rgba(0, 217, 255, 0.12);
+}
+
+/* ========================================
+   FONDO DEL MENÚ LATERAL
+======================================== */
+
+.menu-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    opacity: 1;
+    visibility: visible;
+    transition:
+        opacity var(--transicion),
+        visibility var(--transicion);
+}
+
+.menu-fondo[hidden] {
+    display: none;
+}
+
+/* ========================================
+   MENÚ LATERAL
+======================================== */
+
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: min(320px, 85vw);
+    height: 100vh;
+    height: 100dvh;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(22, 119, 255, 0.16),
+            transparent 45%
+        ),
+        linear-gradient(180deg, #0d1424, #080c16);
+    border-right: 1px solid rgba(0, 217, 255, 0.22);
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.4);
+    transform: translateX(-105%);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        transform var(--transicion),
+        visibility var(--transicion);
+}
+
+.menu-lateral.abierto {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Cabecera interna */
+
+.menu-lateral-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.menu-marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.menu-marca .logo {
+    width: 34px;
+    height: 34px;
+    font-size: 1.5rem;
+}
+
+/* Botón para cerrar */
+
+.cerrar-menu {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(0, 217, 255, 0.25);
+    border-radius: 10px;
+    color: var(--cian);
+    background: rgba(22, 119, 255, 0.08);
+    font-size: 1.7rem;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background var(--transicion),
+        transform var(--transicion);
+}
+
+.cerrar-menu:hover {
+    background: rgba(22, 119, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Título de navegación */
+
+.menu-titulo {
+    margin: 25px 0 14px;
+    color: #8495b1;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Enlaces */
+
+.menu-enlaces {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-enlace {
     position: relative;
-    padding: 10px 0;
-    color: #d5dceb;
+    min-height: 52px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: #c4d0e3;
     font-size: 0.95rem;
-    white-space: nowrap;
-    transition: color 0.2s ease;
+    line-height: 1.4;
+    transition:
+        color var(--transicion),
+        background var(--transicion),
+        border-color var(--transicion),
+        transform var(--transicion);
 }
 
-.navegacion a:hover,
-.navegacion a.activo {
-    color: #398fff;
+.menu-enlace:hover {
+    color: var(--blanco);
+    background: rgba(22, 119, 255, 0.1);
+    border-color: rgba(0, 217, 255, 0.2);
+    transform: translateX(3px);
 }
 
-.navegacion a.activo::after {
+.menu-icono {
+    width: 24px;
+    min-width: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cian);
+    font-size: 1.2rem;
+    transition:
+        color var(--transicion),
+        filter var(--transicion);
+}
+
+/* Tienda: icono en azul/cian */
+
+.menu-enlace[href="tienda.html"] .menu-icono {
+    color: var(--cian);
+    filter: drop-shadow(0 0 6px rgba(0, 217, 255, 0.65));
+}
+
+.menu-enlace[href="tienda.html"]:hover .menu-icono {
+    color: var(--azul);
+    filter: drop-shadow(0 0 9px rgba(22, 119, 255, 0.9));
+}
+
+/* Página actual */
+
+.menu-enlace.activo {
+    color: var(--blanco);
+    background: linear-gradient(
+        90deg,
+        rgba(22, 119, 255, 0.2),
+        rgba(0, 217, 255, 0.06)
+    );
+    border-color: rgba(0, 217, 255, 0.22);
+}
+
+.menu-enlace.activo::before {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    border-radius: 5px;
-    background: #328bff;
+    top: 25%;
+    left: -1px;
+    width: 3px;
+    height: 50%;
+    border-radius: 4px;
+    background: var(--cian);
+    box-shadow: 0 0 12px var(--cian);
+}
+
+.menu-enlace.activo .menu-icono {
+    color: var(--cian);
+}
+
+/* Pie del menú */
+
+.menu-lateral-pie {
+    margin-top: auto;
+    padding-top: 24px;
+    color: #8495b1;
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+.menu-lateral-pie p {
+    margin-bottom: 10px;
+}
+
+.menu-lateral-pie strong {
+    color: var(--cian);
+}
+
+.menu-punto {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: #22e6a8;
+    box-shadow: 0 0 10px rgba(34, 230, 168, 0.6);
 }
 
 /* ========================================
    PRESENTACIÓN
-   ======================================== */
+======================================== */
 
 .presentacion {
     max-width: 900px;
@@ -170,7 +445,7 @@ main {
 
 /* ========================================
    TARJETAS DE SERVICIOS
-   ======================================== */
+======================================== */
 
 .servicios {
     width: 90%;
@@ -232,7 +507,7 @@ main {
     box-shadow: 0 14px 38px rgba(16, 92, 220, 0.14);
 }
 
-/* ICONOS */
+/* Iconos de servicios */
 
 .icono {
     width: 96px;
@@ -266,14 +541,14 @@ main {
         inset 0 0 15px rgba(36, 115, 255, 0.12);
 }
 
-/* TÍTULOS Y DESCRIPCIONES */
+/* Títulos y descripciones */
 
 .tarjeta-servicio h2 {
     min-height: 58px;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 18px;
     color: #f5f7ff;
     font-size: 1.28rem;
     font-weight: 800;
@@ -288,7 +563,7 @@ main {
     line-height: 1.8;
 }
 
-/* PRECIOS */
+/* Precios */
 
 .precio {
     width: 100%;
@@ -312,7 +587,7 @@ main {
 
 /* ========================================
    CIERRE
-   ======================================== */
+======================================== */
 
 .cierre {
     padding: 55px 20px 65px;
@@ -371,7 +646,9 @@ main {
     transform: translateX(5px);
 }
 
-/* PIE DE PÁGINA */
+/* ========================================
+   PIE DE PÁGINA
+======================================== */
 
 .pie {
     padding: 23px 20px;
@@ -387,21 +664,10 @@ main {
 }
 
 /* ========================================
-   TABLETS Y PANTALLAS MEDIANAS
-   ======================================== */
+   TABLETS
+======================================== */
 
 @media (max-width: 950px) {
-    .encabezado {
-        flex-direction: column;
-        justify-content: center;
-        gap: 15px;
-        padding: 18px 5%;
-    }
-
-    .navegacion {
-        gap: 20px;
-    }
-
     .servicios {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 18px;
@@ -418,7 +684,7 @@ main {
 
 /* ========================================
    CELULARES
-   ======================================== */
+======================================== */
 
 @media (max-width: 600px) {
     body {
@@ -426,29 +692,19 @@ main {
     }
 
     .encabezado {
-        padding: 18px 5%;
+        min-height: 68px;
+        padding: 12px 5%;
         gap: 15px;
     }
 
     .marca {
-        justify-content: center;
-        font-size: 1.45rem;
+        font-size: 1.35rem;
     }
 
     .logo {
-        width: 34px;
-        height: 34px;
-        font-size: 1.5rem;
-    }
-
-    .navegacion {
-        width: 100%;
-        gap: 12px 18px;
-        justify-content: center;
-    }
-
-    .navegacion a {
-        font-size: 0.86rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1.55rem;
     }
 
     .presentacion {
@@ -531,19 +787,11 @@ main {
     }
 }
 
-/* CELULARES PEQUEÑOS */
+/* Celulares pequeños */
 
 @media (max-width: 360px) {
     .marca {
-        font-size: 1.3rem;
-    }
-
-    .navegacion {
-        gap: 12px 14px;
-    }
-
-    .navegacion a {
-        font-size: 0.82rem;
+        font-size: 1.2rem;
     }
 
     .tarjeta-servicio {
@@ -557,7 +805,7 @@ main {
 
 /* ========================================
    ANIMACIONES
-   ======================================== */
+======================================== */
 
 @keyframes servicios-bajada {
     from {
@@ -583,7 +831,9 @@ main {
     }
 }
 
-/* DISPOSITIVOS TÁCTILES */
+/* ========================================
+   DISPOSITIVOS TÁCTILES
+======================================== */
 
 @media (hover: none) {
     .tarjeta-servicio:hover {
@@ -599,7 +849,15 @@ main {
     }
 }
 
-/* ACCESIBILIDAD */
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--cian);
+    outline-offset: 4px;
+}
 
 @media (prefers-reduced-motion: reduce) {
     html {
