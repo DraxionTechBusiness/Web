@@ -1,11 +1,13 @@
+
 /* ==========================================
    DRAXIONTECH — INICIO
-   Diseño futurista, responsive y optimizado
+   Diseño futurista + menú lateral responsive
    Exclusivo para index.html
 ========================================== */
 
 :root {
     --fondo: #030711;
+    --fondo-panel: #081321;
     --azul: #087cff;
     --cian: #00d9ff;
     --blanco: #f7f9ff;
@@ -32,7 +34,8 @@ body.pagina-inicio {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.pagina-inicio a {
+.pagina-inicio a,
+.pagina-inicio button {
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -46,14 +49,14 @@ body.pagina-inicio {
 
 .pagina-inicio .encabezado {
     position: relative;
-    z-index: 10;
+    z-index: 20;
     width: 100%;
     min-height: 78px;
     padding: 12px 5.4%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 20px;
     background: rgba(3, 7, 17, 0.97);
     border-bottom: 1px solid var(--borde);
 }
@@ -84,36 +87,230 @@ body.pagina-inicio {
     text-shadow: 0 0 12px rgba(0, 140, 255, 0.5);
 }
 
-.pagina-inicio .navegacion {
+/* Botón hamburguesa */
+
+.pagina-inicio .boton-menu-lateral {
+    width: 46px;
+    height: 46px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: clamp(12px, 2.2vw, 30px);
+    gap: 6px;
+    flex-shrink: 0;
+    border: 1px solid rgba(74, 183, 255, 0.3);
+    border-radius: 12px;
+    background: rgba(10, 24, 43, 0.8);
+    cursor: pointer;
+    transition:
+        background var(--transicion),
+        border-color var(--transicion),
+        box-shadow var(--transicion);
 }
 
-.pagina-inicio .navegacion a {
-    position: relative;
-    padding: 10px 0;
-    color: #dce6fa;
-    font-size: 13px;
-    text-decoration: none;
-    transition: color var(--transicion);
+.pagina-inicio .boton-menu-lateral:hover {
+    background: rgba(28, 69, 105, 0.65);
+    border-color: var(--cian);
+    box-shadow: 0 0 18px rgba(0, 217, 255, 0.12);
 }
 
-.pagina-inicio .navegacion a:hover,
-.pagina-inicio .navegacion a.activo {
-    color: var(--cian);
-}
-
-.pagina-inicio .navegacion a.activo::after {
-    content: "";
-    position: absolute;
-    bottom: 3px;
-    left: 0;
-    width: 100%;
+.pagina-inicio .boton-menu-lateral span {
+    display: block;
+    width: 21px;
     height: 2px;
+    border-radius: 3px;
     background: var(--cian);
+    transition: transform var(--transicion);
+}
+
+/* ==========================================
+   BARRA LATERAL
+========================================== */
+
+.pagina-inicio .menu-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    width: min(320px, 85vw);
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 18px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    color: var(--blanco);
+    background:
+        radial-gradient(
+            ellipse at 0% 0%,
+            rgba(0, 124, 255, 0.12),
+            transparent 55%
+        ),
+        linear-gradient(180deg, #081321 0%, #030711 100%);
+    border-right: 1px solid rgba(75, 190, 255, 0.22);
+    box-shadow: 15px 0 50px rgba(0, 0, 0, 0.35);
+    transform: translateX(-105%);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        transform 0.28s ease,
+        visibility 0.28s;
+}
+
+.pagina-inicio .menu-lateral.abierto {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.pagina-inicio .menu-lateral-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.pagina-inicio .menu-marca {
+    font-size: 21px;
+}
+
+.pagina-inicio .menu-marca .logo {
+    width: 38px;
+    height: 38px;
+    font-size: 30px;
+}
+
+.pagina-inicio .cerrar-menu {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border: 1px solid #263d55;
+    border-radius: 10px;
+    background: #101d2e;
+    color: var(--cian);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background var(--transicion),
+        border-color var(--transicion);
+}
+
+.pagina-inicio .cerrar-menu:hover {
+    background: #19334b;
+    border-color: var(--cian);
+}
+
+/* Título de navegación */
+
+.pagina-inicio .menu-titulo {
+    margin: 0 0 14px 12px;
+    color: #718aa5;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 2px;
+}
+
+/* Enlaces */
+
+.pagina-inicio .menu-enlaces {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.pagina-inicio .menu-enlace {
+    position: relative;
+    min-height: 49px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border: 1px solid transparent;
+    border-radius: 11px;
+    color: #bdcadd;
+    font-size: 14px;
+    line-height: 1.45;
+    text-decoration: none;
+    transition:
+        color var(--transicion),
+        background var(--transicion),
+        border-color var(--transicion),
+        transform var(--transicion);
+}
+
+.pagina-inicio .menu-enlace:hover {
+    color: white;
+    background: rgba(30, 75, 112, 0.32);
+    border-color: rgba(78, 190, 255, 0.2);
+    transform: translateX(2px);
+}
+
+.pagina-inicio .menu-enlace.activo {
+    color: #69ddff;
+    background: linear-gradient(
+        90deg,
+        rgba(22, 125, 183, 0.25),
+        rgba(22, 125, 183, 0.06)
+    );
+    border-color: rgba(78, 190, 255, 0.22);
+}
+
+.pagina-inicio .menu-icono {
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #69d9ff;
+    font-size: 20px;
+}
+
+/* Pie de la barra lateral */
+
+.pagina-inicio .menu-lateral-pie {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: auto;
+    padding: 25px 8px 8px;
+    color: #8296ad;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.pagina-inicio .menu-punto {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #42d9ff;
+    box-shadow: 0 0 10px rgba(66, 217, 255, 0.7);
+}
+
+/* Fondo detrás del menú */
+
+.pagina-inicio .menu-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 4, 12, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.pagina-inicio .menu-fondo[hidden] {
+    display: none;
+}
+
+body.pagina-inicio.menu-abierto {
+    overflow: hidden;
 }
 
 /* ==========================================
@@ -162,7 +359,7 @@ body.pagina-inicio {
     gap: 35px;
 }
 
-/* Texto */
+/* Texto principal */
 
 .pagina-inicio .hero-texto {
     position: relative;
@@ -180,8 +377,8 @@ body.pagina-inicio {
 }
 
 .pagina-inicio .hero-etiqueta span {
-    color: var(--cian);
     padding: 0 3px;
+    color: var(--cian);
 }
 
 .pagina-inicio .hero-texto h1 {
@@ -195,7 +392,7 @@ body.pagina-inicio {
 }
 
 .pagina-inicio .hero-texto h1 .azul {
-    color: #087cff;
+    color: var(--azul);
 }
 
 .pagina-inicio .hero-descripcion {
@@ -206,7 +403,7 @@ body.pagina-inicio {
     line-height: 1.7;
 }
 
-/* Botones */
+/* Botones principales */
 
 .pagina-inicio .hero-botones {
     display: flex;
@@ -265,8 +462,8 @@ body.pagina-inicio {
 
 .pagina-inicio .hero-visual {
     position: relative;
-    min-width: 0;
     width: 100%;
+    min-width: 0;
 }
 
 .pagina-inicio .hero-resplandor {
@@ -433,7 +630,7 @@ body.pagina-inicio {
     background: #557ba7;
 }
 
-/* Líneas azules decorativas */
+/* Líneas decorativas */
 
 .pagina-inicio .hero-linea {
     position: absolute;
@@ -517,15 +714,10 @@ body.pagina-inicio {
 }
 
 /* ==========================================
-   TABLET
+   TABLETS
 ========================================== */
 
 @media (max-width: 1000px) {
-    .pagina-inicio .encabezado {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
     .pagina-inicio .hero-contenido {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 22px;
@@ -551,9 +743,9 @@ body.pagina-inicio {
 
 @media (max-width: 700px) {
     .pagina-inicio .encabezado {
-        min-height: auto;
-        padding: 13px 4%;
-        gap: 10px;
+        min-height: 68px;
+        padding: 11px 5%;
+        justify-content: space-between;
     }
 
     .pagina-inicio .marca {
@@ -566,18 +758,13 @@ body.pagina-inicio {
         font-size: 30px;
     }
 
-    .pagina-inicio .navegacion {
-        width: 100%;
-        gap: 8px 17px;
-    }
-
-    .pagina-inicio .navegacion a {
-        padding: 7px 0;
-        font-size: 11px;
+    .pagina-inicio .boton-menu-lateral {
+        width: 43px;
+        height: 43px;
     }
 
     .pagina-inicio .inicio-hero {
-        min-height: calc(100svh - 100px);
+        min-height: calc(100svh - 68px);
         padding: 55px 6% 115px;
         align-items: center;
     }
@@ -638,12 +825,8 @@ body.pagina-inicio {
 /* Teléfonos estrechos */
 
 @media (max-width: 390px) {
-    .pagina-inicio .navegacion {
-        gap: 8px 12px;
-    }
-
-    .pagina-inicio .navegacion a {
-        font-size: 10px;
+    .pagina-inicio .marca {
+        font-size: 20px;
     }
 
     .pagina-inicio .hero-botones {
@@ -663,9 +846,12 @@ body.pagina-inicio {
     }
 }
 
-/* Accesibilidad */
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
 
-.pagina-inicio a:focus-visible {
+.pagina-inicio a:focus-visible,
+.pagina-inicio button:focus-visible {
     outline: 2px solid var(--cian);
     outline-offset: 4px;
 }
