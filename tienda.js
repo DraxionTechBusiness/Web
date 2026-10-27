@@ -11,22 +11,18 @@ const productos = {
         nombre: "Anuncios y trabajos con IA",
         descripcion: "Contenido creativo y recursos elaborados con inteligencia artificial."
     },
-
     mantenimiento: {
         nombre: "Edición y mantenimiento web",
         descripcion: "Actualizaciones, mejoras y mantenimiento de páginas existentes."
     },
-
     web: {
         nombre: "Creación de páginas web",
         descripcion: "Páginas personalizadas para negocios, proyectos e ideas."
     },
-
     qr: {
         nombre: "Creación de códigos QR",
         descripcion: "Códigos QR para páginas web y otros recursos digitales."
     },
-
     aplicaciones: {
         nombre: "Creación de aplicaciones",
         descripcion: "Aplicaciones adaptadas a las necesidades de cada proyecto."
@@ -46,6 +42,8 @@ const cantidadCarrito = document.getElementById("cantidad-carrito");
 const botonCotizar = document.getElementById("solicitar-cotizacion");
 const anio = document.getElementById("anio");
 
+const CLAVE_CONTADOR = "draxiontech_ultimo_numero_cotizacion";
+
 
 /* =========================================
    INICIALIZACIÓN
@@ -55,7 +53,6 @@ if (anio) {
     anio.textContent = new Date().getFullYear();
 }
 
-// El carrito empieza oculto
 if (seccionCarrito) {
     seccionCarrito.hidden = true;
 }
@@ -63,6 +60,38 @@ if (seccionCarrito) {
 if (botonVerCarrito) {
     botonVerCarrito.setAttribute("aria-expanded", "false");
     actualizarTextoBotonCarrito();
+}
+
+
+/* =========================================
+   NUMERACIÓN LOCAL DE COTIZACIONES
+========================================= */
+
+function obtenerSiguienteCodigo() {
+    let ultimoNumero = 0;
+
+    try {
+        ultimoNumero = Number(
+            localStorage.getItem(CLAVE_CONTADOR) || 0
+        );
+
+        if (!Number.isSafeInteger(ultimoNumero) || ultimoNumero < 0) {
+            ultimoNumero = 0;
+        }
+
+        const siguienteNumero = ultimoNumero + 1;
+
+        localStorage.setItem(
+            CLAVE_CONTADOR,
+            String(siguienteNumero)
+        );
+
+        return "DRX-" + String(siguienteNumero).padStart(4, "0");
+    } catch (error) {
+        // Si el navegador bloquea localStorage, no inventar
+        // un código que parezca formar parte de la secuencia.
+        return null;
+    }
 }
 
 
@@ -79,18 +108,15 @@ botonesAnadir.forEach((boton) => {
             return;
         }
 
-        // Evitar añadir el mismo servicio más de una vez
         if (carrito.includes(id)) {
             mostrarAviso("Ese servicio ya está en tu carrito.");
             return;
         }
 
         carrito.push(id);
-
         actualizarCarrito();
         mostrarAviso("Servicio añadido al carrito.");
 
-        // Confirmación visual temporal en el botón
         const textoOriginal = boton.textContent;
         boton.textContent = "Añadido ✓";
         boton.disabled = true;
@@ -98,6 +124,7 @@ botonesAnadir.forEach((boton) => {
         setTimeout(() => {
             boton.textContent = textoOriginal;
             boton.disabled = false;
+            actualizarCarrito();
         }, 900);
     });
 });
@@ -161,6 +188,7 @@ function actualizarCarrito() {
     } else {
         carrito.forEach((id) => {
             const producto = productos[id];
+            if (!producto) return;
 
             const elemento = document.createElement("article");
             elemento.className = "item-carrito";
@@ -203,12 +231,10 @@ function actualizarCarrito() {
 
     actualizarTextoBotonCarrito();
 
-    // Activar o desactivar el botón de cotización
     if (botonCotizar) {
         botonCotizar.disabled = carrito.length === 0;
     }
 
-    // Sincronizar los botones del catálogo con el carrito
     botonesAnadir.forEach((boton) => {
         const seleccionado = carrito.includes(boton.dataset.producto);
 
@@ -270,7 +296,6 @@ function mostrarAviso(mensaje) {
     aviso.textContent = mensaje;
     aviso.hidden = false;
 
-    // Reiniciar el temporizador si hay otro aviso
     if (aviso._temporizador) {
         clearTimeout(aviso._temporizador);
     }
@@ -295,6 +320,27 @@ function generarCotizacion() {
         return;
     }
 
+    // Abrir primero para reducir el riesgo de bloqueo emergente.
+    const ventana = window.open("", "_blank");
+
+    if (!ventana) {
+        mostrarAviso(
+            "El navegador bloqueó la ventana. Permite las ventanas emergentes e inténtalo de nuevo."
+        );
+        return;
+    }
+
+    // El número solo se consume cuando se pudo abrir la ventana.
+    const codigo = obtenerSiguienteCodigo();
+
+    if (!codigo) {
+        ventana.close();
+        mostrarAviso(
+            "No se pudo guardar el contador en este navegador. Revisa la configuración de privacidad."
+        );
+        return;
+    }
+
     const fecha = new Date();
 
     const fechaFormato = fecha.toLocaleDateString("es-CR", {
@@ -307,19 +353,6 @@ function generarCotizacion() {
         hour: "2-digit",
         minute: "2-digit"
     });
-
-    // Por ahora es un identificador local provisional.
-    // Más adelante se conectará un contador centralizado.
-    const numeroTemporal = "PENDIENTE";
-
-    const ventana = window.open("", "_blank");
-
-    if (!ventana) {
-        mostrarAviso(
-            "El navegador bloqueó la ventana. Permite las ventanas emergentes e inténtalo de nuevo."
-        );
-        return;
-    }
 
     const listaServicios = carrito
         .map((id) => {
@@ -334,13 +367,14 @@ function generarCotizacion() {
         })
         .join("");
 
+    ventana.document.open();
     ventana.document.write(`
         <!DOCTYPE html>
         <html lang="es">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Solicitud de cotización - DraxionTech</title>
+            <title>${escaparHTML(codigo)} - DraxionTech</title>
 
             <style>
                 body {
@@ -415,7 +449,7 @@ function generarCotizacion() {
                 <p>Tu visión, nuestro código.</p>
             </header>
 
-            <h2>Solicitud de cotización #${numeroTemporal}</h2>
+            <h2>Solicitud de cotización #${escaparHTML(codigo)}</h2>
 
             <p><strong>Fecha:</strong> ${escaparHTML(fechaFormato)}</p>
             <p><strong>Hora:</strong> ${escaparHTML(horaFormato)}</p>
@@ -441,7 +475,6 @@ function generarCotizacion() {
         </body>
         </html>
     `);
-
     ventana.document.close();
 }
 
