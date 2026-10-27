@@ -1,16 +1,35 @@
 
+/* ========================================
+   DRAXIONTECH — TIENDA DE SERVICIOS
+   Catálogo, carrito y cotizaciones
+======================================== */
+
+
 /* =========================
-   CONFIGURACIÓN GENERAL
+   1. CONFIGURACIÓN GENERAL
 ========================= */
 
 :root {
     --azul: #2563eb;
     --azul-hover: #1d4ed8;
+    --azul-claro: #eff6ff;
+
     --texto: #1f2937;
     --texto-secundario: #5b6472;
+
+    --fondo: #ffffff;
     --fondo-tarjeta: #f3f4f6;
+    --fondo-suave: #f8fafc;
+
     --borde: #d1d5db;
-    --blanco: #ffffff;
+    --borde-suave: #e5e7eb;
+
+    --rojo: #b91c1c;
+    --rojo-claro: #fef2f2;
+
+    --radio: 10px;
+    --sombra: 0 6px 24px rgb(0 0 0 / 5%);
+    --transicion: 0.2s ease;
 }
 
 * {
@@ -19,14 +38,23 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 20px;
 }
 
 body {
     margin: 0;
-    background: var(--blanco);
+    background: var(--fondo);
     color: var(--texto);
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
 }
 
 button,
@@ -35,11 +63,16 @@ a {
 }
 
 button {
-    font: inherit;
+    touch-action: manipulation;
 }
 
 a {
     color: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
 }
 
 .contenedor {
@@ -47,30 +80,37 @@ a {
     margin-inline: auto;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 
 /* =========================
-   ENCABEZADO Y NAVEGACIÓN
+   2. ENCABEZADO Y NAVEGACIÓN
 ========================= */
 
 .encabezado {
-    background: var(--blanco);
-    border-bottom: 1px solid #e5e7eb;
+    position: relative;
+    z-index: 10;
+    background: var(--fondo);
+    border-bottom: 1px solid var(--borde-suave);
 }
 
 .encabezado-contenido {
-    min-height: 76px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
+    min-height: 76px;
 }
 
 .logo {
     color: var(--azul);
     font-size: 1.5rem;
     font-weight: 800;
-    text-decoration: none;
     letter-spacing: -0.5px;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .navegacion {
@@ -84,17 +124,18 @@ a {
     color: var(--texto-secundario);
     font-size: 0.95rem;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color var(--transicion);
 }
 
 .navegacion a:hover,
-.navegacion a:focus-visible {
+.navegacion a:focus-visible,
+.navegacion a[aria-current="page"] {
     color: var(--azul);
 }
 
 
 /* =========================
-   CONTENIDO PRINCIPAL
+   3. CONTENIDO PRINCIPAL
 ========================= */
 
 .principal {
@@ -131,13 +172,13 @@ a {
 
 
 /* =========================
-   AVISO SOBRE PRECIOS
+   4. AVISO SOBRE PRECIOS
 ========================= */
 
 .aviso-precios {
     margin-bottom: 48px;
     padding: 22px 24px;
-    background: #f8fafc;
+    background: var(--fondo-suave);
     border: 1px solid var(--borde);
     border-left: 5px solid var(--azul);
     border-radius: 8px;
@@ -146,6 +187,7 @@ a {
 .aviso-precios h2 {
     margin: 0 0 8px;
     font-size: 1.2rem;
+    line-height: 1.4;
 }
 
 .aviso-precios p {
@@ -155,12 +197,13 @@ a {
 
 
 /* =========================
-   CATÁLOGO DE SERVICIOS
+   5. CATÁLOGO DE SERVICIOS
 ========================= */
 
 .catalogo > h2 {
     margin: 0 0 24px;
     font-size: 1.8rem;
+    line-height: 1.3;
     letter-spacing: -0.5px;
 }
 
@@ -174,15 +217,18 @@ a {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     min-width: 0;
     padding: 24px;
+
     background: var(--fondo-tarjeta);
     border: 1px solid var(--borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
+
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
+        transform var(--transicion),
+        box-shadow var(--transicion),
+        border-color var(--transicion);
 }
 
 .producto:hover {
@@ -195,11 +241,14 @@ a {
     display: grid;
     width: 46px;
     height: 46px;
+    flex-shrink: 0;
     margin-bottom: 16px;
     place-items: center;
-    background: var(--blanco);
+
+    background: var(--fondo);
     border: 1px solid var(--borde);
     border-radius: 9px;
+
     color: var(--azul);
     font-size: 1.7rem;
 }
@@ -219,7 +268,7 @@ a {
 
 
 /* =========================
-   BOTONES
+   6. BOTONES
 ========================= */
 
 .boton-anadir,
@@ -230,64 +279,83 @@ a {
     align-items: center;
     justify-content: center;
     gap: 8px;
+
     min-height: 44px;
     padding: 10px 16px;
+
     border: 1px solid transparent;
-    border-radius: 6px;
+    border-radius: 7px;
+
     font-weight: 700;
+    line-height: 1.4;
     text-align: center;
+    text-decoration: none;
+
     cursor: pointer;
+
     transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease;
+        background var(--transicion),
+        color var(--transicion),
+        border-color var(--transicion),
+        opacity var(--transicion);
 }
 
 .boton-anadir {
     width: 100%;
-    background: var(--blanco);
+    margin-top: auto;
+
+    background: var(--fondo);
     border-color: var(--azul);
     color: var(--azul);
 }
 
-.boton-anadir:hover {
+.boton-anadir:hover:not(:disabled) {
     background: var(--azul);
-    color: var(--blanco);
+    color: var(--fondo);
 }
 
 .boton-ver-carrito,
 .boton-cotizar {
     background: var(--azul);
-    color: var(--blanco);
+    color: var(--fondo);
 }
 
-.boton-ver-carrito:hover,
-.boton-cotizar:hover {
+.boton-ver-carrito:hover:not(:disabled),
+.boton-cotizar:hover:not(:disabled) {
     background: var(--azul-hover);
 }
 
 .boton-quitar {
+    flex-shrink: 0;
     min-height: 36px;
     padding: 6px 12px;
-    background: var(--blanco);
+
+    background: var(--fondo);
     border-color: #dc2626;
-    color: #b91c1c;
+    color: var(--rojo);
+
     font-size: 0.88rem;
 }
 
 .boton-quitar:hover {
-    background: #fef2f2;
+    background: var(--rojo-claro);
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
 }
 
 button:focus-visible,
-a:focus-visible {
+a:focus-visible,
+input:focus-visible {
     outline: 3px solid #93c5fd;
     outline-offset: 3px;
 }
 
 
 /* =========================
-   CARRITO
+   7. ZONA DEL CARRITO
 ========================= */
 
 .zona-carrito {
@@ -295,23 +363,21 @@ a:focus-visible {
 }
 
 .boton-ver-carrito {
+    display: flex;
     width: 100%;
     max-width: 320px;
     margin: 0 auto;
-    display: flex;
-}
-
-#carrito[hidden] {
-    display: none;
 }
 
 .carrito {
+    min-width: 0;
     margin-top: 24px;
     padding: 26px;
-    background: var(--blanco);
+
+    background: var(--fondo);
     border: 1px solid var(--borde);
-    border-radius: 10px;
-    box-shadow: 0 6px 24px rgb(0 0 0 / 5%);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
 }
 
 .encabezado-carrito {
@@ -325,27 +391,47 @@ a:focus-visible {
 .encabezado-carrito h2 {
     margin: 0;
     font-size: 1.65rem;
+    line-height: 1.3;
 }
+
+
+/* =========================
+   8. CARRITO VACÍO
+========================= */
 
 .carrito-vacio {
     margin: 0;
     padding: 22px;
+
     background: var(--fondo-tarjeta);
     border-radius: 8px;
+
     color: var(--texto-secundario);
     text-align: center;
 }
+
+
+/* =========================
+   9. SERVICIOS SELECCIONADOS
+========================= */
 
 .item-carrito {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+
+    min-width: 0;
     margin-bottom: 12px;
     padding: 16px;
+
     background: var(--fondo-tarjeta);
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--borde-suave);
     border-radius: 8px;
+}
+
+.item-carrito > div {
+    min-width: 0;
 }
 
 .item-carrito h3,
@@ -355,6 +441,7 @@ a:focus-visible {
 
 .item-carrito h3 {
     font-size: 1rem;
+    line-height: 1.4;
 }
 
 .item-carrito p {
@@ -362,6 +449,11 @@ a:focus-visible {
     color: var(--texto-secundario);
     font-size: 0.9rem;
 }
+
+
+/* =========================
+   10. RESUMEN DEL CARRITO
+========================= */
 
 .resumen-carrito {
     margin-top: 22px;
@@ -377,22 +469,129 @@ a:focus-visible {
 .nota-carrito {
     color: var(--texto-secundario);
     font-size: 0.9rem;
+    line-height: 1.6;
 }
 
-.boton-cotizar {
-    width: 100%;
-    margin-top: 10px;
+.resumen-carrito .nota-carrito {
+    margin-bottom: 0;
 }
 
 
 /* =========================
-   PIE DE PÁGINA
+   11. FORMULARIO DEL CLIENTE
+========================= */
+
+.datos-cliente {
+    display: grid;
+    gap: 18px;
+
+    min-width: 0;
+    margin-top: 26px;
+    padding: 22px;
+
+    background: var(--fondo-suave);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+}
+
+.datos-cliente h2 {
+    margin: 0;
+    font-size: 1.45rem;
+    line-height: 1.35;
+}
+
+.datos-cliente > .nota-carrito {
+    margin: 0;
+}
+
+.campo-cliente {
+    display: grid;
+    gap: 7px;
+    min-width: 0;
+}
+
+.campo-cliente label {
+    color: var(--texto);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.campo-cliente input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 11px 13px;
+
+    background: var(--fondo);
+    border: 1px solid #9ca3af;
+    border-radius: 7px;
+
+    color: var(--texto);
+    font-size: 16px;
+    line-height: 1.4;
+
+    transition:
+        border-color var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.campo-cliente input::placeholder {
+    color: #7b8492;
+    opacity: 1;
+}
+
+.campo-cliente input:hover {
+    border-color: #6b7280;
+}
+
+.campo-cliente input:focus {
+    border-color: var(--azul);
+    outline: 2px solid #bfdbfe;
+    outline-offset: 1px;
+}
+
+.campo-cliente input:focus:invalid {
+    border-color: #dc2626;
+}
+
+.datos-cliente .boton-cotizar {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 0;
+}
+
+
+/* =========================
+   12. AVISOS DEL JAVASCRIPT
+========================= */
+
+#aviso-tienda {
+    width: max-content;
+    max-width: 90%;
+    padding: 12px 20px;
+
+    background: #1f2937;
+    color: #ffffff;
+
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================
+   13. PIE DE PÁGINA
 ========================= */
 
 .pie-pagina {
     padding: 26px 0;
+
     background: #f9fafb;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--borde-suave);
+
     color: var(--texto-secundario);
     text-align: center;
     font-size: 0.9rem;
@@ -404,62 +603,166 @@ a:focus-visible {
 
 
 /* =========================
-   DISEÑO RESPONSIVO
+   14. TABLET
 ========================= */
 
 @media (max-width: 850px) {
     .productos {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
     }
 
     .encabezado-contenido {
-        padding-top: 16px;
-        padding-bottom: 16px;
         align-items: flex-start;
         flex-direction: column;
+        justify-content: center;
         gap: 12px;
+
+        padding-top: 16px;
+        padding-bottom: 16px;
     }
 
     .navegacion {
-        gap: 14px;
+        gap: 12px 18px;
+    }
+
+    .principal {
+        padding-top: 38px;
     }
 }
 
+
+/* =========================
+   15. CELULARES
+========================= */
+
 @media (max-width: 560px) {
+    .contenedor {
+        width: 92%;
+    }
+
     .principal {
-        padding-top: 32px;
-        padding-bottom: 44px;
+        padding-top: 30px;
+        padding-bottom: 42px;
+    }
+
+    .presentacion {
+        margin-bottom: 28px;
+    }
+
+    .presentacion h1 {
+        font-size: clamp(2rem, 9vw, 2.7rem);
+        letter-spacing: -1px;
+    }
+
+    .descripcion-principal {
+        font-size: 1rem;
+    }
+
+    .aviso-precios {
+        margin-bottom: 36px;
+        padding: 18px;
+    }
+
+    .catalogo > h2 {
+        font-size: 1.55rem;
     }
 
     .productos {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
     }
 
     .producto {
         padding: 20px;
     }
 
-    .aviso-precios {
-        padding: 18px;
+    .zona-carrito {
+        margin-top: 30px;
     }
 
     .carrito {
-        padding: 18px;
+        padding: 16px;
+    }
+
+    .encabezado-carrito h2 {
+        font-size: 1.4rem;
     }
 
     .item-carrito {
-        align-items: flex-start;
+        align-items: stretch;
         flex-direction: column;
+        gap: 12px;
+        padding: 14px;
     }
 
     .item-carrito .boton-quitar {
         width: 100%;
     }
 
-    .navegacion {
-        gap: 10px 16px;
+    .datos-cliente {
+        gap: 15px;
+        padding: 16px;
+    }
+
+    .datos-cliente h2 {
+        font-size: 1.3rem;
+    }
+
+    .boton-ver-carrito {
+        max-width: none;
+    }
+
+    .pie-pagina {
+        padding: 22px 0;
     }
 }
+
+
+/* =========================
+   16. CELULARES MUY PEQUEÑOS
+========================= */
+
+@media (max-width: 360px) {
+    .contenedor {
+        width: 94%;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .navegacion {
+        gap: 8px 12px;
+    }
+
+    .navegacion a {
+        font-size: 0.88rem;
+    }
+
+    .producto {
+        padding: 16px;
+    }
+
+    .carrito {
+        padding: 12px;
+    }
+
+    .datos-cliente {
+        padding: 12px;
+    }
+
+    .boton-anadir,
+    .boton-ver-carrito,
+    .boton-cotizar {
+        padding: 11px 12px;
+    }
+}
+
+
+/* =========================
+   17. ACCESIBILIDAD
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -469,8 +772,9 @@ a:focus-visible {
     *,
     *::before,
     *::after {
-        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
