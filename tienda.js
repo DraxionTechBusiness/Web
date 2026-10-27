@@ -68,10 +68,8 @@ if (botonVerCarrito) {
 ========================================= */
 
 function obtenerSiguienteCodigo() {
-    let ultimoNumero = 0;
-
     try {
-        ultimoNumero = Number(
+        let ultimoNumero = Number(
             localStorage.getItem(CLAVE_CONTADOR) || 0
         );
 
@@ -88,8 +86,6 @@ function obtenerSiguienteCodigo() {
 
         return "DRX-" + String(siguienteNumero).padStart(4, "0");
     } catch (error) {
-        // Si el navegador bloquea localStorage, no inventar
-        // un código que parezca formar parte de la secuencia.
         return null;
     }
 }
@@ -117,13 +113,7 @@ botonesAnadir.forEach((boton) => {
         actualizarCarrito();
         mostrarAviso("Servicio añadido al carrito.");
 
-        const textoOriginal = boton.textContent;
-        boton.textContent = "Añadido ✓";
-        boton.disabled = true;
-
         setTimeout(() => {
-            boton.textContent = textoOriginal;
-            boton.disabled = false;
             actualizarCarrito();
         }, 900);
     });
@@ -281,7 +271,9 @@ function mostrarAviso(mensaje) {
             left: "50%",
             transform: "translateX(-50%)",
             zIndex: "1000",
+            width: "max-content",
             maxWidth: "90%",
+            boxSizing: "border-box",
             padding: "12px 20px",
             background: "#1f2937",
             color: "#ffffff",
@@ -330,7 +322,6 @@ function generarCotizacion() {
         return;
     }
 
-    // El número solo se consume cuando se pudo abrir la ventana.
     const codigo = obtenerSiguienteCodigo();
 
     if (!codigo) {
@@ -351,12 +342,15 @@ function generarCotizacion() {
 
     const horaFormato = fecha.toLocaleTimeString("es-CR", {
         hour: "2-digit",
-        minute: "2-digit"
+        minute: "2-digit",
+        hour12: true
     });
 
+    // Crear una copia de los servicios seleccionados.
     const listaServicios = carrito
         .map((id) => {
             const producto = productos[id];
+            if (!producto) return "";
 
             return `
                 <li>
@@ -368,22 +362,41 @@ function generarCotizacion() {
         .join("");
 
     ventana.document.open();
+
     ventana.document.write(`
         <!DOCTYPE html>
         <html lang="es">
         <head>
             <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            >
+
             <title>${escaparHTML(codigo)} - DraxionTech</title>
 
             <style>
+                * {
+                    box-sizing: border-box;
+                }
+
+                html {
+                    width: 100%;
+                    -webkit-text-size-adjust: 100%;
+                    text-size-adjust: 100%;
+                }
+
                 body {
+                    width: 100%;
                     max-width: 800px;
-                    margin: 40px auto;
+                    margin: 0 auto;
                     padding: 24px;
                     color: #1f2937;
+                    background: #ffffff;
                     font-family: Arial, Helvetica, sans-serif;
+                    font-size: 16px;
                     line-height: 1.6;
+                    overflow-wrap: anywhere;
                 }
 
                 header {
@@ -393,11 +406,23 @@ function generarCotizacion() {
 
                 h1 {
                     color: #2563eb;
-                    margin-bottom: 4px;
+                    margin: 0 0 4px;
+                    font-size: 30px;
+                    line-height: 1.25;
                 }
 
                 h2 {
                     margin-top: 28px;
+                    font-size: 21px;
+                    line-height: 1.35;
+                }
+
+                p {
+                    margin: 10px 0;
+                }
+
+                ol {
+                    padding-left: 26px;
                 }
 
                 li {
@@ -405,6 +430,7 @@ function generarCotizacion() {
                     padding: 14px;
                     background: #f3f4f6;
                     border-radius: 6px;
+                    overflow-wrap: anywhere;
                 }
 
                 li p {
@@ -416,28 +442,110 @@ function generarCotizacion() {
                     padding: 16px;
                     background: #eff6ff;
                     border-left: 4px solid #2563eb;
+                    border-radius: 4px;
                 }
 
-                button {
-                    margin-top: 24px;
-                    padding: 12px 20px;
-                    border: none;
+                .instrucciones-contacto {
+                    margin-top: 28px;
+                    padding: 18px;
+                    border: 2px solid #2563eb;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    line-height: 1.65;
+                    break-inside: avoid;
+                }
+
+                .instrucciones-contacto h2 {
+                    margin: 0 0 12px;
+                    color: #1d4ed8;
+                    font-size: 21px;
+                }
+
+                .aviso-contacto {
+                    margin-top: 16px;
+                    padding: 12px;
+                    background: #f3f4f6;
                     border-radius: 6px;
+                    font-size: 14px;
+                }
+
+                .firma-draxion {
+                    margin-top: 20px;
+                    text-align: center;
+                }
+
+                .boton-imprimir {
+                    display: block;
+                    width: 100%;
+                    margin: 24px 0;
+                    padding: 14px 18px;
+                    border: none;
+                    border-radius: 8px;
                     background: #2563eb;
-                    color: white;
+                    color: #ffffff;
                     font-size: 16px;
                     font-weight: bold;
                     cursor: pointer;
                 }
 
+                @media screen and (max-width: 600px) {
+                    body {
+                        width: 100%;
+                        max-width: none;
+                        margin: 0;
+                        padding: 18px;
+                        font-size: 16px;
+                    }
+
+                    h1 {
+                        font-size: 27px;
+                    }
+
+                    h2 {
+                        font-size: 20px;
+                    }
+
+                    .instrucciones-contacto {
+                        padding: 15px;
+                        font-size: 15px;
+                    }
+
+                    .instrucciones-contacto h2 {
+                        font-size: 20px;
+                    }
+                }
+
                 @media print {
-                    button {
-                        display: none;
+                    @page {
+                        size: A4;
+                        margin: 12mm;
                     }
 
                     body {
+                        width: auto;
+                        max-width: none;
                         margin: 0;
                         padding: 0;
+                        font-size: 11pt;
+                    }
+
+                    h1 {
+                        font-size: 24pt;
+                    }
+
+                    h2 {
+                        font-size: 15pt;
+                    }
+
+                    .boton-imprimir {
+                        display: none !important;
+                    }
+
+                    li,
+                    .aviso,
+                    .instrucciones-contacto {
+                        print-color-adjust: exact;
+                        -webkit-print-color-adjust: exact;
                     }
                 }
             </style>
@@ -446,13 +554,20 @@ function generarCotizacion() {
         <body>
             <header>
                 <h1>DraxionTech</h1>
-                <p>Tu visión, nuestro código.</p>
+                <p><em>Tu visión, nuestro código.</em></p>
             </header>
 
             <h2>Solicitud de cotización #${escaparHTML(codigo)}</h2>
 
-            <p><strong>Fecha:</strong> ${escaparHTML(fechaFormato)}</p>
-            <p><strong>Hora:</strong> ${escaparHTML(horaFormato)}</p>
+            <p>
+                <strong>Fecha:</strong>
+                ${escaparHTML(fechaFormato)}
+            </p>
+
+            <p>
+                <strong>Hora:</strong>
+                ${escaparHTML(horaFormato)}
+            </p>
 
             <h2>Servicios solicitados</h2>
 
@@ -462,19 +577,55 @@ function generarCotizacion() {
 
             <div class="aviso">
                 <strong>Información importante</strong>
+
                 <p>
                     Esta solicitud no contiene precios. El costo se determinará
                     después de revisar las necesidades y el alcance del proyecto.
                 </p>
+
                 <p>
                     Este documento no es una factura fiscal ni un comprobante de pago.
                 </p>
             </div>
 
-            <button onclick="window.print()">Imprimir o guardar como PDF</button>
+            <section class="instrucciones-contacto">
+                <h2>¿Qué sigue con tu cotización?</h2>
+
+                <p>
+                    Para continuar con tu proyecto,
+                    <strong>envía esta cotización por mensaje privado
+                    a DraxionTech en Facebook o Instagram.</strong>
+                </p>
+
+                <p>
+                    Así podremos identificar tu solicitud, revisar los servicios
+                    que te interesan y conversar contigo sobre los siguientes pasos.
+                </p>
+
+                <p class="aviso-contacto">
+                    <strong>Importante:</strong>
+                    generar esta cotización no significa que hayamos recibido
+                    tu solicitud. Debes enviárnosla por uno de nuestros chats
+                    oficiales para que podamos atenderte.
+                </p>
+
+                <p class="firma-draxion">
+                    <strong>DraxionTech</strong><br>
+                    <em>Tu visión, nuestro código.</em>
+                </p>
+            </section>
+
+            <button
+                class="boton-imprimir"
+                type="button"
+                onclick="window.print()"
+            >
+                Imprimir o guardar como PDF
+            </button>
         </body>
         </html>
     `);
+
     ventana.document.close();
 }
 
