@@ -32,7 +32,7 @@ const productos = {
 // Estado del carrito
 const carrito = [];
 
-// Elementos del HTML
+// Elementos HTML
 const botonesAnadir = document.querySelectorAll(".boton-anadir");
 const botonVerCarrito = document.getElementById("ver-carrito");
 const seccionCarrito = document.getElementById("carrito");
@@ -41,6 +41,11 @@ const contadorCarrito = document.getElementById("contador-carrito");
 const cantidadCarrito = document.getElementById("cantidad-carrito");
 const botonCotizar = document.getElementById("solicitar-cotizacion");
 const anio = document.getElementById("anio");
+
+// Datos del cliente
+const formularioCliente = document.getElementById("datos-cliente");
+const campoNombre = document.getElementById("nombre-cliente");
+const campoCorreo = document.getElementById("correo-cliente");
 
 const CLAVE_CONTADOR = "draxiontech_ultimo_numero_cotizacion";
 
@@ -60,6 +65,13 @@ if (seccionCarrito) {
 if (botonVerCarrito) {
     botonVerCarrito.setAttribute("aria-expanded", "false");
     actualizarTextoBotonCarrito();
+}
+
+if (formularioCliente) {
+    formularioCliente.addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        generarCotizacion();
+    });
 }
 
 
@@ -112,10 +124,6 @@ botonesAnadir.forEach((boton) => {
         carrito.push(id);
         actualizarCarrito();
         mostrarAviso("Servicio añadido al carrito.");
-
-        setTimeout(() => {
-            actualizarCarrito();
-        }, 900);
     });
 });
 
@@ -165,50 +173,50 @@ function actualizarTextoBotonCarrito() {
 ========================================= */
 
 function actualizarCarrito() {
-    if (!contenidoCarrito) return;
+    if (contenidoCarrito) {
+        contenidoCarrito.replaceChildren();
 
-    contenidoCarrito.replaceChildren();
+        if (carrito.length === 0) {
+            const mensaje = document.createElement("p");
+            mensaje.className = "carrito-vacio";
+            mensaje.textContent = "Todavía no has añadido servicios.";
 
-    if (carrito.length === 0) {
-        const mensaje = document.createElement("p");
-        mensaje.className = "carrito-vacio";
-        mensaje.textContent = "Todavía no has añadido servicios.";
+            contenidoCarrito.appendChild(mensaje);
+        } else {
+            carrito.forEach((id) => {
+                const producto = productos[id];
+                if (!producto) return;
 
-        contenidoCarrito.appendChild(mensaje);
-    } else {
-        carrito.forEach((id) => {
-            const producto = productos[id];
-            if (!producto) return;
+                const elemento = document.createElement("article");
+                elemento.className = "item-carrito";
 
-            const elemento = document.createElement("article");
-            elemento.className = "item-carrito";
+                const informacion = document.createElement("div");
 
-            const informacion = document.createElement("div");
+                const titulo = document.createElement("h3");
+                titulo.textContent = producto.nombre;
 
-            const titulo = document.createElement("h3");
-            titulo.textContent = producto.nombre;
+                const descripcion = document.createElement("p");
+                descripcion.textContent = producto.descripcion;
 
-            const descripcion = document.createElement("p");
-            descripcion.textContent = producto.descripcion;
+                informacion.append(titulo, descripcion);
 
-            informacion.append(titulo, descripcion);
+                const botonQuitar = document.createElement("button");
+                botonQuitar.type = "button";
+                botonQuitar.className = "boton-quitar";
+                botonQuitar.textContent = "Quitar";
+                botonQuitar.setAttribute(
+                    "aria-label",
+                    `Quitar ${producto.nombre} del carrito`
+                );
 
-            const botonQuitar = document.createElement("button");
-            botonQuitar.type = "button";
-            botonQuitar.className = "boton-quitar";
-            botonQuitar.textContent = "Quitar";
-            botonQuitar.setAttribute(
-                "aria-label",
-                `Quitar ${producto.nombre} del carrito`
-            );
+                botonQuitar.addEventListener("click", () => {
+                    quitarDelCarrito(id);
+                });
 
-            botonQuitar.addEventListener("click", () => {
-                quitarDelCarrito(id);
+                elemento.append(informacion, botonQuitar);
+                contenidoCarrito.appendChild(elemento);
             });
-
-            elemento.append(informacion, botonQuitar);
-            contenidoCarrito.appendChild(elemento);
-        });
+        }
     }
 
     if (contadorCarrito) {
@@ -222,7 +230,11 @@ function actualizarCarrito() {
     actualizarTextoBotonCarrito();
 
     if (botonCotizar) {
-        botonCotizar.disabled = carrito.length === 0;
+        botonCotizar.disabled =
+            carrito.length === 0 ||
+            !formularioCliente ||
+            !campoNombre ||
+            !campoCorreo;
     }
 
     botonesAnadir.forEach((boton) => {
@@ -233,6 +245,37 @@ function actualizarCarrito() {
             ? "Añadido ✓"
             : "Añadir al carrito";
     });
+}
+
+
+/* =========================================
+   VALIDAR DATOS DEL CLIENTE
+========================================= */
+
+function obtenerDatosCliente() {
+    if (!formularioCliente || !campoNombre || !campoCorreo) {
+        mostrarAviso("No se encontraron los campos del cliente.");
+        return null;
+    }
+
+    if (!formularioCliente.reportValidity()) {
+        return null;
+    }
+
+    const nombre = campoNombre.value.trim();
+    const correo = campoCorreo.value.trim();
+
+    if (!nombre || !correo) {
+        mostrarAviso("Completa tu nombre y correo electrónico.");
+        return null;
+    }
+
+    if (/[\r\n]/.test(nombre) || /[\r\n]/.test(correo)) {
+        mostrarAviso("Revisa los datos ingresados.");
+        return null;
+    }
+
+    return { nombre, correo };
 }
 
 
@@ -271,7 +314,6 @@ function mostrarAviso(mensaje) {
             left: "50%",
             transform: "translateX(-50%)",
             zIndex: "1000",
-            width: "max-content",
             maxWidth: "90%",
             boxSizing: "border-box",
             padding: "12px 20px",
@@ -294,7 +336,7 @@ function mostrarAviso(mensaje) {
 
     aviso._temporizador = setTimeout(() => {
         aviso.hidden = true;
-    }, 2500);
+    }, 3000);
 }
 
 
@@ -312,7 +354,11 @@ function generarCotizacion() {
         return;
     }
 
-    // Abrir primero para reducir el riesgo de bloqueo emergente.
+    const cliente = obtenerDatosCliente();
+
+    if (!cliente) return;
+
+    // Abrir la ventana durante la acción del usuario.
     const ventana = window.open("", "_blank");
 
     if (!ventana) {
@@ -322,12 +368,13 @@ function generarCotizacion() {
         return;
     }
 
+    // Crear el código después de abrir la ventana.
     const codigo = obtenerSiguienteCodigo();
 
     if (!codigo) {
         ventana.close();
         mostrarAviso(
-            "No se pudo guardar el contador en este navegador. Revisa la configuración de privacidad."
+            "No se pudo guardar el contador en este navegador."
         );
         return;
     }
@@ -346,7 +393,6 @@ function generarCotizacion() {
         hour12: true
     });
 
-    // Crear una copia de los servicios seleccionados.
     const listaServicios = carrito
         .map((id) => {
             const producto = productos[id];
@@ -360,6 +406,9 @@ function generarCotizacion() {
             `;
         })
         .join("");
+
+    const nombreSeguro = escaparHTML(cliente.nombre);
+    const correoSeguro = escaparHTML(cliente.correo);
 
     ventana.document.open();
 
@@ -405,8 +454,8 @@ function generarCotizacion() {
                 }
 
                 h1 {
-                    color: #2563eb;
                     margin: 0 0 4px;
+                    color: #2563eb;
                     font-size: 30px;
                     line-height: 1.25;
                 }
@@ -419,6 +468,18 @@ function generarCotizacion() {
 
                 p {
                     margin: 10px 0;
+                }
+
+                .datos {
+                    padding: 16px;
+                    margin-top: 20px;
+                    background: #f8fafc;
+                    border: 1px solid #e2e8f0;
+                    border-radius: 8px;
+                }
+
+                .datos p {
+                    margin: 6px 0;
                 }
 
                 ol {
@@ -507,11 +568,6 @@ function generarCotizacion() {
 
                     .instrucciones-contacto {
                         padding: 15px;
-                        font-size: 15px;
-                    }
-
-                    .instrucciones-contacto h2 {
-                        font-size: 20px;
                     }
                 }
 
@@ -529,21 +585,14 @@ function generarCotizacion() {
                         font-size: 11pt;
                     }
 
-                    h1 {
-                        font-size: 24pt;
-                    }
-
-                    h2 {
-                        font-size: 15pt;
-                    }
-
                     .boton-imprimir {
                         display: none !important;
                     }
 
                     li,
                     .aviso,
-                    .instrucciones-contacto {
+                    .instrucciones-contacto,
+                    .datos {
                         print-color-adjust: exact;
                         -webkit-print-color-adjust: exact;
                     }
@@ -559,15 +608,14 @@ function generarCotizacion() {
 
             <h2>Solicitud de cotización #${escaparHTML(codigo)}</h2>
 
-            <p>
-                <strong>Fecha:</strong>
-                ${escaparHTML(fechaFormato)}
-            </p>
+            <section class="datos">
+                <h2>Datos del cliente</h2>
 
-            <p>
-                <strong>Hora:</strong>
-                ${escaparHTML(horaFormato)}
-            </p>
+                <p><strong>Nombre:</strong> ${nombreSeguro}</p>
+                <p><strong>Correo:</strong> ${correoSeguro}</p>
+                <p><strong>Fecha:</strong> ${escaparHTML(fechaFormato)}</p>
+                <p><strong>Hora:</strong> ${escaparHTML(horaFormato)}</p>
+            </section>
 
             <h2>Servicios solicitados</h2>
 
