@@ -17,15 +17,77 @@
             <span>Draxion<span class="azul">Tech</span></span>
         </a>
 
-        <nav class="navegacion" aria-label="Navegación principal">
-            <a href="index.html" class="activo" aria-current="page">Inicio</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="proyectos.html">Proyectos completados</a>
-            <a href="informacion.html">Sobre nosotros</a>
-            <a href="tienda.html">Tienda</a>
+        <button
+            class="boton-menu-lateral"
+            id="abrir-menu"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="menu-lateral"
+            aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <div class="menu-fondo" id="menu-fondo" hidden></div>
+
+    <aside
+        class="menu-lateral"
+        id="menu-lateral"
+        aria-label="Menú principal"
+        aria-hidden="true"
+        inert>
+
+        <div class="menu-lateral-cabecera">
+            <a href="index.html" class="marca menu-marca">
+                <span class="logo">D</span>
+                <span>Draxion<span class="azul">Tech</span></span>
+            </a>
+
+            <button
+                class="cerrar-menu"
+                id="cerrar-menu"
+                type="button"
+                aria-label="Cerrar menú">
+                &times;
+            </button>
+        </div>
+
+        <p class="menu-titulo">NAVEGACIÓN</p>
+
+        <nav class="menu-enlaces">
+            <a href="index.html" class="menu-enlace activo" aria-current="page">
+                <span class="menu-icono" aria-hidden="true">⌂</span>
+                <span>Inicio</span>
+            </a>
+
+            <a href="informacion.html" class="menu-enlace">
+                <span class="menu-icono" aria-hidden="true">ⓘ</span>
+                <span>Sobre nosotros</span>
+            </a>
+
+            <a href="servicios.html" class="menu-enlace">
+                <span class="menu-icono" aria-hidden="true">⚙</span>
+                <span>Servicios</span>
+            </a>
+
+            <a href="proyectos.html" class="menu-enlace">
+                <span class="menu-icono" aria-hidden="true">▧</span>
+                <span>Proyectos completados</span>
+            </a>
+
+            <a href="tienda.html" class="menu-enlace">
+                <span class="menu-icono" aria-hidden="true">🛍</span>
+                <span>Tienda</span>
+            </a>
         </nav>
 
-    </header>
+        <div class="menu-lateral-pie">
+            <span class="menu-punto"></span>
+            <span>Tu visión, nuestro código.</span>
+        </div>
+    </aside>
 
     <main class="inicio-hero">
         <section class="hero-contenido">
@@ -53,8 +115,7 @@
                         <span aria-hidden="true">→</span>
                     </a>
 
-                    <a href="informacion.html"
-                       class="boton-hero boton-secundario">
+                    <a href="informacion.html" class="boton-hero boton-secundario">
                         Sobre nosotros
                         <span aria-hidden="true">→</span>
                     </a>
