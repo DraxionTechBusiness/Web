@@ -1,4 +1,85 @@
 
+/* =========================================
+   DRAXIONTECH — MENÚ LATERAL
+========================================= */
+
+const botonAbrirMenu = document.getElementById("abrir-menu");
+const botonCerrarMenu = document.getElementById("cerrar-menu");
+const menuLateral = document.getElementById("menu-lateral");
+const fondoMenu = document.getElementById("menu-fondo");
+const anioMenu = document.getElementById("anio-menu");
+
+let elementoAntesDeAbrir = null;
+
+if (anioMenu) {
+    anioMenu.textContent = new Date().getFullYear();
+}
+
+function abrirMenuLateral() {
+    if (!menuLateral || !fondoMenu || !botonAbrirMenu) return;
+
+    elementoAntesDeAbrir = document.activeElement;
+
+    menuLateral.inert = false;
+    menuLateral.setAttribute("aria-hidden", "false");
+    fondoMenu.hidden = false;
+
+    requestAnimationFrame(() => {
+        menuLateral.classList.add("abierto");
+        fondoMenu.classList.add("visible");
+    });
+
+    document.body.classList.add("menu-abierto");
+    botonAbrirMenu.setAttribute("aria-expanded", "true");
+
+    if (botonCerrarMenu) {
+        botonCerrarMenu.focus();
+    }
+}
+
+function cerrarMenuLateral() {
+    if (!menuLateral || !fondoMenu || !botonAbrirMenu) return;
+
+    menuLateral.classList.remove("abierto");
+    fondoMenu.classList.remove("visible");
+    document.body.classList.remove("menu-abierto");
+
+    botonAbrirMenu.setAttribute("aria-expanded", "false");
+    menuLateral.setAttribute("aria-hidden", "true");
+    menuLateral.inert = true;
+
+    fondoMenu.hidden = true;
+
+    if (elementoAntesDeAbrir instanceof HTMLElement) {
+        elementoAntesDeAbrir.focus();
+    }
+}
+
+if (botonAbrirMenu) {
+    botonAbrirMenu.addEventListener("click", abrirMenuLateral);
+}
+
+if (botonCerrarMenu) {
+    botonCerrarMenu.addEventListener("click", cerrarMenuLateral);
+}
+
+if (fondoMenu) {
+    fondoMenu.addEventListener("click", cerrarMenuLateral);
+}
+
+document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape" && menuLateral?.classList.contains("abierto")) {
+        cerrarMenuLateral();
+    }
+});
+
+if (menuLateral) {
+    menuLateral.querySelectorAll("a").forEach((enlace) => {
+        enlace.addEventListener("click", cerrarMenuLateral);
+    });
+}
+
+
 "use strict";
 
 /* =========================================
@@ -702,3 +783,4 @@ function escaparHTML(texto) {
 ========================================= */
 
 actualizarCarrito();
+
