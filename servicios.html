@@ -4,288 +4,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#070b14">
+    <meta name="description" content="Conoce los servicios tecnológicos de DraxionTech y solicita una cotización personalizada.">
+    <meta name="theme-color" content="#08090d">
 
-    <meta
-        name="description"
-        content="Descubre los servicios de DraxionTech: creación de páginas web, aplicaciones, códigos QR, edición y mantenimiento web, anuncios y soluciones con inteligencia artificial."
-    >
+    <title>Tienda | DraxionTech</title>
 
-    <title>Servicios | DraxionTech</title>
-
-    <link rel="stylesheet" href="servicios.css">
+    <link rel="stylesheet" href="tienda.css">
+    <script src="tienda.js" defer></script>
 </head>
-
 <body>
+    <!-- ENCABEZADO CON MENÚ LATERAL -->
+    <header class="encabezado">
+        <div class="contenedor encabezado-contenido">
+            <button
+                id="abrir-menu"
+                class="boton-menu"
+                type="button"
+                aria-label="Abrir menú de navegación"
+                aria-controls="menu-lateral"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-<header class="encabezado">
+            <a class="logo" href="index.html">DraxionTech</a>
 
-    <a href="index.html" class="marca" aria-label="DraxionTech, inicio">
-        <span class="logo">D</span>
-        <span>Draxion<span class="azul">Tech</span></span>
-    </a>
+            <span class="encabezado-etiqueta">TIENDA DIGITAL</span>
+        </div>
+    </header>
 
-    <button
-        type="button"
-        class="boton-menu-lateral"
-        id="abrir-menu"
-        aria-label="Abrir menú"
-        aria-controls="menu-lateral"
-        aria-expanded="false"
+    <!-- FONDO OSCURO -->
+    <div id="menu-fondo" class="menu-fondo" hidden></div>
+
+    <!-- BARRA LATERAL -->
+    <aside
+        id="menu-lateral"
+        class="menu-lateral"
+        aria-label="Menú principal"
+        aria-hidden="true"
+        inert
     >
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+        <div class="menu-encabezado">
+            <a class="menu-logo" href="index.html">Draxion<span>Tech</span></a>
 
-</header>
+            <button
+                id="cerrar-menu"
+                class="boton-cerrar-menu"
+                type="button"
+                aria-label="Cerrar menú"
+            >×</button>
+        </div>
 
-<div class="menu-fondo" id="menu-fondo" hidden></div>
+        <p class="menu-etiqueta">NAVEGACIÓN</p>
 
-<aside
-    class="menu-lateral"
-    id="menu-lateral"
-    aria-label="Menú principal"
-    aria-hidden="true"
-    inert
->
-    <div class="menu-lateral-cabecera">
+        <nav class="menu-enlaces" aria-label="Navegación principal">
+            <a href="index.html">
+                <span class="menu-icono" aria-hidden="true">⌂</span>
+                Inicio
+            </a>
 
-        <a href="index.html" class="menu-marca" aria-label="DraxionTech, inicio">
-            <span class="logo">D</span>
-            <span>Draxion<span class="azul">Tech</span></span>
-        </a>
+            <a href="informacion.html">
+                <span class="menu-icono" aria-hidden="true">ⓘ</span>
+                Información
+            </a>
 
-        <button
-            type="button"
-            class="cerrar-menu"
-            id="cerrar-menu"
-            aria-label="Cerrar menú"
-        >
-            &times;
-        </button>
+            <a href="proyectos.html">
+                <span class="menu-icono" aria-hidden="true">▦</span>
+                Proyectos completados
+            </a>
 
-    </div>
+            <a href="servicios.html">
+                <span class="menu-icono" aria-hidden="true">⌘</span>
+                Servicios
+            </a>
 
-    <p class="menu-titulo">Navegación</p>
+            <a href="tienda.html" aria-current="page">
+                <span class="menu-icono" aria-hidden="true">🛒</span>
+                Tienda
+                <span class="menu-activo" aria-hidden="true"></span>
+            </a>
+        </nav>
 
-    <nav class="menu-enlaces" aria-label="Secciones del sitio">
+        <div class="menu-pie">
+            <span class="menu-linea"></span>
+            <p>Tu visión, nuestro código.</p>
+            <span>DraxionTech © <span id="anio-menu">2026</span></span>
+        </div>
+    </aside>
 
-        <a href="index.html" class="menu-enlace">
-            <span class="menu-icono" aria-hidden="true">⌂</span>
-            <span>Inicio</span>
-        </a>
+    <main class="contenedor principal">
+        <section class="presentacion">
+            <p class="etiqueta">NUESTROS SERVICIOS</p>
+            <h1>Tu visión, nuestro código.</h1>
 
-        <a
-            href="informacion.html"
-            class="menu-enlace"
-        >
-            <span class="menu-icono" aria-hidden="true">ⓘ</span>
-            <span>Sobre nosotros</span>
-        </a>
-
-        <a
-            href="servicios.html"
-            class="menu-enlace activo"
-            aria-current="page"
-        >
-            <span class="menu-icono" aria-hidden="true">⚙</span>
-            <span>Servicios</span>
-        </a>
-
-        <a href="proyectos.html" class="menu-enlace">
-            <span class="menu-icono" aria-hidden="true">▣</span>
-            <span>Proyectos completados</span>
-        </a>
-
-        <a href="tienda.html" class="menu-enlace">
-            <span class="menu-icono" aria-hidden="true">🛍</span>
-            <span>Tienda</span>
-        </a>
-
-    </nav>
-
-    <div class="menu-lateral-pie">
-        <p><span class="menu-punto"></span> Servicios digitales</p>
-        <p><strong>Tu visión, nuestro código.</strong></p>
-    </div>
-
-</aside>
-
-<main>
-
-    <section class="presentacion">
-        <p class="etiqueta">SERVICIOS</p>
-
-        <h1>
-            Soluciones digitales
-            <span>para hacer crecer tus ideas</span>
-        </h1>
-
-        <p class="descripcion">
-            En DraxionTech ofrecemos servicios pensados para potenciar
-            tu presencia en internet y llevar tu proyecto al siguiente nivel.
-        </p>
-    </section>
-
-    <section class="servicios" aria-label="Nuestros servicios">
-
-        <article class="tarjeta-servicio">
-            <div class="icono" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.7"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 11v2a2 2 0 0 0 2 2h2l9 5V4l-9 5H5a2 2 0 0 0-2 2Z"/>
-                    <path d="M7 15l2 6h4"/>
-                    <path d="M19 9a5 5 0 0 1 0 6"/>
-                </svg>
-            </div>
-
-            <h2>Anuncios y trabajo con IA</h2>
-
-            <p class="texto-servicio">
-                Creamos anuncios atractivos y soluciones con inteligencia
-                artificial para ayudarte a presentar tus ideas, llegar
-                a más personas y potenciar tu proyecto.
+            <p class="descripcion-principal">
+                En DraxionTech transformamos tus ideas en soluciones digitales.
+                Explora nuestros servicios y selecciona los que necesitas.
             </p>
+        </section>
 
-            <div class="precio">
-                <span class="icono-precio" aria-hidden="true">◇</span>
-                <span>Precio: ₡1000-9000</span>
-            </div>
-        </article>
-
-        <article class="tarjeta-servicio">
-            <div class="icono" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.8"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m8 8-5 4 5 4"/>
-                    <path d="m16 8 5 4-5 4"/>
-                    <path d="m14 4-4 16"/>
-                </svg>
-            </div>
-
-            <h2>Edición y mantenimiento de páginas web</h2>
-
-            <p class="texto-servicio">
-                Mantené tu sitio web actualizado, organizado y funcionando.
-                Realizamos cambios de contenido, mejoras visuales
-                y mantenimiento para que tu página siga al día.
+        <section class="aviso-precios" aria-labelledby="titulo-precios">
+            <h2 id="titulo-precios">¿Cuánto cuesta un servicio?</h2>
+            <p>
+                Cada proyecto tiene necesidades diferentes. El precio se
+                determina después de conocer tu idea, los requisitos y el
+                alcance del trabajo. Selecciona los servicios que te interesan
+                y solicita una cotización personalizada.
             </p>
+        </section>
 
-            <div class="precio">
-                <span class="icono-precio" aria-hidden="true">◇</span>
-                <span>Precio: ₡3000-12000</span>
+        <section class="catalogo" aria-labelledby="titulo-catalogo">
+            <h2 id="titulo-catalogo">Explora nuestros servicios</h2>
+
+            <div class="productos">
+                <article class="producto">
+                    <div class="icono-servicio" aria-hidden="true">✦</div>
+                    <h3>Anuncios y trabajos con IA</h3>
+                    <p>
+                        Contenido creativo, anuncios y recursos visuales
+                        elaborados con ayuda de inteligencia artificial.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="ia">
+                        Añadir al carrito
+                    </button>
+                </article>
+
+                <article class="producto">
+                    <div class="icono-servicio" aria-hidden="true">⚙</div>
+                    <h3>Edición y mantenimiento web</h3>
+                    <p>
+                        Actualización de contenido, mejoras visuales y
+                        mantenimiento de páginas web existentes.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="mantenimiento">
+                        Añadir al carrito
+                    </button>
+                </article>
+
+                <article class="producto">
+                    <div class="icono-servicio" aria-hidden="true">⌘</div>
+                    <h3>Creación de páginas web</h3>
+                    <p>
+                        Páginas web personalizadas para presentar tu negocio,
+                        proyecto, servicio o idea en Internet.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="web">
+                        Añadir al carrito
+                    </button>
+                </article>
+
+                <article class="producto">
+                    <div class="icono-servicio" aria-hidden="true">▦</div>
+                    <h3>Creación de códigos QR</h3>
+                    <p>
+                        Códigos QR para enlazar a páginas web, información
+                        digital y otros recursos compatibles.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="qr">
+                        Añadir al carrito
+                    </button>
+                </article>
+
+                <article class="producto">
+                    <div class="icono-servicio" aria-hidden="true">▣</div>
+                    <h3>Creación de aplicaciones</h3>
+                    <p>
+                        Desarrollo de aplicaciones adaptadas a las necesidades
+                        y características de tu proyecto.
+                    </p>
+                    <button class="boton-anadir" type="button" data-producto="aplicaciones">
+                        Añadir al carrito
+                    </button>
+                </article>
             </div>
-        </article>
+        </section>
 
-        <article class="tarjeta-servicio">
-            <div class="icono" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.8"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M2 12h20"/>
-                    <path d="M12 2a15 15 0 0 1 0 20"/>
-                    <path d="M12 2a15 15 0 0 0 0 20"/>
-                </svg>
-            </div>
+        <section class="zona-carrito" aria-label="Carrito de servicios">
+            <button
+                id="ver-carrito"
+                class="boton-ver-carrito"
+                type="button"
+                aria-expanded="false"
+                aria-controls="carrito"
+            >
+                Ver carrito (<span id="contador-carrito">0</span>)
+            </button>
 
-            <h2>Creación de páginas web</h2>
+            <section id="carrito" class="carrito" aria-labelledby="titulo-carrito" hidden>
+                <div class="encabezado-carrito">
+                    <div>
+                        <p class="etiqueta">TU SELECCIÓN</p>
+                        <h2 id="titulo-carrito">Carrito de servicios</h2>
+                    </div>
+                </div>
 
-            <p class="texto-servicio">
-                Diseñamos páginas web modernas, adaptables y personalizadas
-                que reflejan tu identidad y presentan tu negocio,
-                comunidad o proyecto al mundo digital.
+                <div id="contenido-carrito" aria-live="polite">
+                    <p class="carrito-vacio">Todavía no has añadido servicios.</p>
+                </div>
+
+                <div class="resumen-carrito">
+                    <p>
+                        Servicios seleccionados:
+                        <strong id="cantidad-carrito">0</strong>
+                    </p>
+                    <p class="nota-carrito">
+                        La solicitud no incluye precios. Estos se definirán
+                        durante el proceso de cotización.
+                    </p>
+                </div>
+
+                <form id="datos-cliente" class="datos-cliente" autocomplete="on">
+                    <h2>Datos del cliente</h2>
+                    <p class="nota-carrito">
+                        Completa tus datos para incluirlos en el documento
+                        de cotización.
+                    </p>
+
+                    <div class="campo-cliente">
+                        <label for="nombre-cliente">Nombre completo</label>
+                        <input
+                            id="nombre-cliente"
+                            name="nombre"
+                            type="text"
+                            autocomplete="name"
+                            maxlength="100"
+                            placeholder="Escribe tu nombre"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-cliente">
+                        <label for="correo-cliente">Correo electrónico</label>
+                        <input
+                            id="correo-cliente"
+                            name="correo"
+                            type="email"
+                            autocomplete="email"
+                            maxlength="254"
+                            placeholder="ejemplo@gmail.com"
+                            required
+                        >
+                    </div>
+
+                    <p class="nota-carrito">
+                        Tus datos se utilizarán para preparar la cotización.
+                        Revisa que estén escritos correctamente antes de
+                        generar el documento.
+                    </p>
+
+                    <button
+                        id="solicitar-cotizacion"
+                        class="boton-cotizar"
+                        type="button"
+                        disabled
+                    >
+                        Generar cotización
+                    </button>
+                </form>
+
+                <p class="nota-carrito">
+                    <strong>Importante:</strong>
+                    generar el documento no envía automáticamente tu solicitud
+                    a DraxionTech. Sigue las instrucciones incluidas en la
+                    cotización para compartirla por nuestros canales oficiales.
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <p>
+                © <span id="anio">2026</span>
+                DraxionTech. Todos los derechos reservados.
             </p>
-
-            <div class="precio">
-                <span class="icono-precio" aria-hidden="true">◇</span>
-                <span>Precio: ₡4000-25000</span>
-            </div>
-        </article>
-
-        <article class="tarjeta-servicio">
-            <div class="icono" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.8"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="7" height="7" rx="1"/>
-                    <rect x="14" y="3" width="7" height="7" rx="1"/>
-                    <rect x="3" y="14" width="7" height="7" rx="1"/>
-                    <path d="M6 6h1v1H6z"/>
-                    <path d="M17 6h1v1h-1z"/>
-                    <path d="M6 17h1v1H6z"/>
-                    <path d="M14 14h3v3h-3z"/>
-                    <path d="M20 14v2"/>
-                    <path d="M17 20h4"/>
-                    <path d="M20 18v3"/>
-                    <path d="M14 20v1"/>
-                </svg>
-            </div>
-
-            <h2>Creación de códigos QR</h2>
-
-            <p class="texto-servicio">
-                Creamos códigos QR personalizados para compartir enlaces,
-                páginas web, información de contacto y otros contenidos
-                de forma rápida, práctica y sencilla.
-            </p>
-
-            <div class="precio">
-                <span class="icono-precio" aria-hidden="true">◇</span>
-                <span>Precio: ₡2500</span>
-            </div>
-        </article>
-
-        <article class="tarjeta-servicio">
-            <div class="icono" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.8"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="6" y="2" width="12" height="20" rx="2"/>
-                    <path d="M10 5h4"/>
-                    <path d="M11 18h2"/>
-                    <path d="m9 10 2 2-2 2"/>
-                    <path d="M13 14h2"/>
-                </svg>
-            </div>
-
-            <h2>Creación de aplicaciones</h2>
-
-            <p class="texto-servicio">
-                Desarrollamos aplicaciones adaptadas a las necesidades
-                de tu proyecto, con funciones personalizadas para ayudarte
-                a convertir tus ideas en herramientas digitales.
-            </p>
-
-            <div class="precio">
-                <span class="icono-precio" aria-hidden="true">◇</span>
-                <span>Precio: ₡9000-25000</span>
-            </div>
-        </article>
-
-    </section>
-
-    <section class="cierre">
-        <h2>Tu visión. <span>Nuestro código.</span></h2>
-
-        <p>Construyamos juntos tu próximo proyecto digital.</p>
-
-        <a href="tienda.html" class="boton-principal">
-            Solicitar cotización
-            <span aria-hidden="true">→</span>
-        </a>
-    </section>
-
-</main>
-
-<footer class="pie">
-    <p>© 2026 DraxionTech. Todos los derechos reservados.</p>
-</footer>
-
-<script src="servicios.js"></script>
-
+            <p>Tu visión, nuestro código.</p>
+        </div>
+    </footer>
 </body>
 </html>
