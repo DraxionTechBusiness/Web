@@ -1,3 +1,4 @@
+"use strict";
 
 /* =========================================
    DRAXIONTECH — MENÚ LATERAL
@@ -78,9 +79,6 @@ if (menuLateral) {
         enlace.addEventListener("click", cerrarMenuLateral);
     });
 }
-
-
-"use strict";
 
 /* =========================================
    DRAXIONTECH — CATÁLOGO Y CARRITO
