@@ -1,37 +1,131 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#08090d">
-    <meta name="description" content="Descubre los proyectos completados de DraxionTech.">
+
+    <meta
+        name="theme-color"
+        content="#08090d"
+    >
+
+    <meta
+        name="description"
+        content="Descubre los proyectos completados de DraxionTech."
+    >
+
     <title>Proyectos completados | DraxionTech</title>
 
     <link rel="stylesheet" href="proyectos.css">
+    <script src="proyectos.js" defer></script>
 </head>
+
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN -->
+    <!-- ENCABEZADO -->
     <header class="encabezado">
+
         <a href="index.html" class="marca">
             <span class="logo">D</span>
             <span>Draxion<span class="azul">Tech</span></span>
         </a>
-        
-<nav class="navegacion" aria-label="Navegación principal">
-    <a href="index.html">Inicio</a>
-    <a href="servicios.html">Servicios</a>
-    <a href="proyectos.html" class="activo" aria-current="page">Proyectos completados</a>
-    <a href="informacion.html">Sobre nosotros</a>
-    <a href="tienda.html">Tienda</a>
-</nav>
+
+        <!-- BOTÓN HAMBURGUESA -->
+        <button
+            class="boton-menu"
+            id="abrir-menu"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="menu-lateral"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
     </header>
+
+    <!-- FONDO DEL MENÚ -->
+    <div
+        class="menu-fondo"
+        id="menu-fondo"
+        hidden
+    ></div>
+
+    <!-- MENÚ LATERAL -->
+    <aside
+        class="menu-lateral"
+        id="menu-lateral"
+        aria-label="Menú de navegación"
+        aria-hidden="true"
+        inert
+    >
+
+        <div class="menu-encabezado">
+
+            <a href="index.html" class="menu-logo">
+                Draxion<span class="azul">Tech</span>
+            </a>
+
+            <button
+                class="boton-cerrar-menu"
+                id="cerrar-menu"
+                type="button"
+                aria-label="Cerrar menú"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <p class="menu-etiqueta">NAVEGACIÓN</p>
+
+        <nav class="enlaces-menu" aria-label="Navegación principal">
+
+            <a href="index.html">
+                <span aria-hidden="true">⌂</span>
+                Inicio
+            </a>
+
+            <a href="informacion.html">
+                <span aria-hidden="true">◈</span>
+                Sobre nosotros
+            </a>
+
+            <a href="proyectos.html" aria-current="page">
+                <span aria-hidden="true">▦</span>
+                Proyectos completados
+            </a>
+
+            <a href="servicios.html">
+                <span aria-hidden="true">⚙</span>
+                Servicios
+            </a>
+
+            <a href="tienda.html">
+                <span aria-hidden="true">🛒</span>
+                Tienda
+            </a>
+
+        </nav>
+
+        <div class="menu-pie">
+            <div class="menu-linea"></div>
+            <p>Tu visión, nuestro código.</p>
+            <span id="anio-menu">2026</span>
+        </div>
+
+    </aside>
 
     <!-- CONTENIDO PRINCIPAL -->
     <main>
+
         <section class="proyectos">
-            <span class="etiqueta">NUESTRO PORTAFOLIO</span>
+
+            <span class="etiqueta">
+                NUESTRO PORTAFOLIO
+            </span>
 
             <h1>
                 Proyectos <span class="azul">completados</span>
@@ -44,7 +138,10 @@
             </p>
 
             <div class="mensaje-proyectos">
-                <div class="icono-proyectos">✦</div>
+
+                <div class="icono-proyectos" aria-hidden="true">
+                    ✦
+                </div>
 
                 <h2>¡Estamos comenzando!</h2>
 
@@ -55,21 +152,27 @@
                 </p>
 
                 <span class="estado-proyectos">
-                    <span class="punto-estado"></span>
+                    <span class="punto-estado" aria-hidden="true"></span>
                     Nuevos proyectos próximamente
                 </span>
+
             </div>
 
             <a href="index.html" class="boton-inicio">
                 Volver al inicio
             </a>
+
         </section>
+
     </main>
 
+    <!-- PIE DE PÁGINA -->
     <footer class="pie-pagina">
-        <p>© 2026 DraxionTech. Tu visión, nuestro código.</p>
+        <p>
+            © <span id="anio">2026</span>
+            DraxionTech. Tu visión, nuestro código.
+        </p>
     </footer>
 
 </body>
 </html>
-
