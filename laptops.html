@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070b14">
+    <meta name="description" content="Descubre las laptops disponibles en DraxionTech. Equipos para oficina, estudio, gaming y trabajo profesional.">
+
+    <title>Laptops | DraxionTech</title>
+
+    <link rel="stylesheet" href="laptops.css">
+    <script src="laptops.js" defer></script>
+</head>
+
+<body>
+
+<header class="encabezado">
+    <a href="index.html" class="marca" aria-label="DraxionTech, inicio">
+        <span class="logo">D</span>
+        <span>Draxion<span class="azul">Tech</span></span>
+    </a>
+
+    <button
+        type="button"
+        class="boton-menu-lateral"
+        id="abrir-menu"
+        aria-label="Abrir menú"
+        aria-controls="menu-lateral"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+
+<div class="menu-fondo" id="menu-fondo" hidden></div>
+
+<aside
+    class="menu-lateral"
+    id="menu-lateral"
+    aria-label="Menú principal"
+    aria-hidden="true"
+    inert
+>
+    <div class="menu-lateral-cabecera">
+        <a href="index.html" class="menu-marca">
+            <span class="logo">D</span>
+            <span>Draxion<span class="azul">Tech</span></span>
+        </a>
+
+        <button
+            type="button"
+            class="cerrar-menu"
+            id="cerrar-menu"
+            aria-label="Cerrar menú"
+        >&times;</button>
+    </div>
+
+    <p class="menu-titulo">Navegación</p>
+
+    <nav class="menu-enlaces" aria-label="Secciones del sitio">
+
+        <details class="grupo-menu">
+            <summary class="menu-enlace">
+                <span class="menu-icono">ⓘ</span>
+                <span>Información</span>
+                <span class="flecha-menu">⌄</span>
+            </summary>
+
+            <div class="submenu">
+                <a href="informacion.html">Sobre nosotros</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="proyectos.html">Proyectos completados</a>
+            </div>
+        </details>
+
+        <details class="grupo-menu" open>
+            <summary class="menu-enlace activo">
+                <span class="menu-icono">🛍</span>
+                <span>Tienda</span>
+                <span class="flecha-menu">⌄</span>
+            </summary>
+
+            <div class="submenu">
+                <a href="tienda.html">Servicios digitales</a>
+
+                <details class="grupo-submenu" open>
+                    <summary>Computadoras</summary>
+                    <div class="submenu-interno">
+                        <a href="laptops.html" class="activo">Laptops</a>
+                    </div>
+                </details>
+            </div>
+        </details>
+
+    </nav>
+
+    <div class="menu-lateral-pie">
+        <p><span class="menu-punto"></span> Tecnología y servicios digitales</p>
+        <p><strong>Tu visión, nuestro código.</strong></p>
+    </div>
+</aside>
+
+<main>
+
+    <!-- PRESENTACIÓN -->
+    <section class="presentacion">
+        <p class="etiqueta">DRAXIONTECH STORE</p>
+
+        <h1>
+            Encuentra tu próxima
+            <span>laptop</span>
+        </h1>
+
+        <p class="descripcion">
+            Descubre equipos tecnológicos seleccionados para diferentes
+            necesidades: estudio, oficina, entretenimiento, gaming
+            y trabajo profesional.
+        </p>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section class="categorias">
+        <div class="categoria">
+            <span>01</span>
+            <h2>Draxion Office</h2>
+            <p>Equipos para oficina y tareas básicas.</p>
+        </div>
+
+        <div class="categoria">
+            <span>02</span>
+            <h2>Draxion Essentials</h2>
+            <p>Para el uso diario, estudio y productividad.</p>
+        </div>
+
+        <div class="categoria">
+            <span>03</span>
+            <h2>Draxion Gamer Low Budget</h2>
+            <p>Gaming accesible y entretenimiento.</p>
+        </div>
+
+        <div class="categoria">
+            <span>04</span>
+            <h2>Draxion Render</h2>
+            <p>Potencia para tareas exigentes y creación.</p>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="catalogo">
+
+        <div class="catalogo-cabecera">
+            <div>
+                <p class="etiqueta">CATÁLOGO</p>
+                <h2>Nuestras laptops</h2>
+            </div>
+
+            <p class="contador">9 espacios disponibles</p>
+        </div>
+
+        <div class="productos">
+
+            <!-- LAPTOP 1 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 01</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+            <!-- LAPTOP 2 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 02</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+            <!-- LAPTOP 3 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 03</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+            <!-- LAPTOP 4 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 04</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+            <!-- LAPTOP 5 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 05</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+            <!-- LAPTOP 6 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 06</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+            <!-- LAPTOP 7 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 07</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+            <!-- LAPTOP 8 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 08</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+            <!-- LAPTOP 9 -->
+            <article class="producto">
+                <div class="producto-imagen">
+                    <span class="imagen-placeholder">LAPTOP 09</span>
+                    <span class="estado">Por configurar</span>
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">Categoría</p>
+                    <h3>Nombre del modelo</h3>
+
+                    <ul class="especificaciones">
+                        <li>Procesador: Por definir</li>
+                        <li>RAM: Por definir</li>
+                        <li>Almacenamiento: Por definir</li>
+                        <li>Gráficos: Por definir</li>
+                    </ul>
+
+                    <p class="producto-precio">Precio por definir</p>
+                    <a href="tienda.html" class="boton-producto">Consultar</a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- PEDIDOS ESPECIALES -->
+    <section class="pedido-especial">
+        <p class="etiqueta">¿NO ENCUENTRAS LO QUE BUSCAS?</p>
+
+        <h2>Podemos conseguirlo <span>por encargo.</span></h2>
+
+        <p>
+            Si buscas una laptop específica que no aparece en nuestro
+            catálogo, puedes consultarnos por modelos, precios y
+            disponibilidad.
+        </p>
+
+        <a href="tienda.html" class="boton-principal">
+            Consultar disponibilidad
+            <span aria-hidden="true">→</span>
+        </a>
+    </section>
+
+</main>
+
+<footer class="pie">
+    <p>© 2026 DraxionTech. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
